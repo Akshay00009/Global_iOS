@@ -1,0 +1,34 @@
+PODS:
+  - Alamofire (4.8.1)
+  - GBFloatingTextField (1.0.5)
+  - IQKeyboardManagerSwift (6.0.5)
+  - NVActivityIndicatorView (4.6.1):
+    - NVActivityIndicatorView/Presenter (= 4.6.1)
+  - NVActivityIndicatorView/Presenter (4.6.1)
+  - SwiftyJSON (4.2.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.0)
+  - GBFloatingTextField
+  - IQKeyboardManagerSwift (~> 6.0.4)
+  - NVActivityIndicatorView
+  - SwiftyJSON
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - GBFloatingTextField
+    - IQKeyboardManagerSwift
+    - NVActivityIndicatorView
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  GBFloatingTextField: 7978002fe5c0f5452328e210f73900face8c167f
+  IQKeyboardManagerSwift: c14eca30f6001457d6ddf25e313f23fb6578c41c
+  NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+
+PODFILE CHECKSUM: 42f3868a067ddcbef267d33d16638dc0527294fb
+
+COCOAPODS: 1.6.0
