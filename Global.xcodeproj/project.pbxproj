@@ -158,10 +158,10 @@
 		2036E86E2211406B005E56BC /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				2034DC56221A8E660047A57D /* TableViewCells */,
 				2034DC45221A803F0047A57D /* BCDropDown */,
 				2036E8A022114681005E56BC /* Utils */,
 				2036E89F22114101005E56BC /* ViewControllers */,
+				2034DC56221A8E660047A57D /* TableViewCells */,
 				2036E86F2211406B005E56BC /* AppDelegate.swift */,
 				2036E8762211407B005E56BC /* Assets.xcassets */,
 				2036E8732211406C005E56BC /* Main.storyboard */,

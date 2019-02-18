@@ -66,7 +66,7 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,NVActivity
     }
     @IBAction func loginBtnClicked(_ sender: Any) {
         
-        let shopListVc = self.storyboard?.instantiateViewController(withIdentifier: "ShopListViewController") as? ShopListViewController
+        let shopListVc = self.storyboard?.instantiateViewController(withIdentifier: "MobileBrandListViewController") as? MobileBrandListViewController
         self.navigationController?.pushViewController(shopListVc!, animated: true)
     //login()
     }
