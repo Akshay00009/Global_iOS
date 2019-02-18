@@ -11,6 +11,16 @@
 		2034DC4D221A80540047A57D /* drop_down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2034DC48221A80530047A57D /* drop_down_arrow.png */; };
 		2034DC4E221A80540047A57D /* drop_down_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2034DC49221A80530047A57D /* drop_down_arrow@2x.png */; };
 		2034DC4F221A80540047A57D /* BCDropDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2034DC4B221A80540047A57D /* BCDropDownButton.m */; };
+		2034DC51221A8CA80047A57D /* ShopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2034DC50221A8CA80047A57D /* ShopListViewController.swift */; };
+		2034DC53221A8D1E0047A57D /* MobileBrandListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2034DC52221A8D1E0047A57D /* MobileBrandListViewController.swift */; };
+		2034DC55221A8E4E0047A57D /* ReportListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2034DC54221A8E4E0047A57D /* ReportListViewController.swift */; };
+		2034DC59221A8E9B0047A57D /* ShopListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2034DC57221A8E9B0047A57D /* ShopListTableViewCell.swift */; };
+		2034DC5A221A8E9B0047A57D /* ShopListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2034DC58221A8E9B0047A57D /* ShopListTableViewCell.xib */; };
+		2034DC5F221A8F050047A57D /* MobileBrandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2034DC5D221A8F050047A57D /* MobileBrandTableViewCell.swift */; };
+		2034DC60221A8F050047A57D /* MobileBrandTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2034DC5E221A8F050047A57D /* MobileBrandTableViewCell.xib */; };
+		2034DC63221A8F1E0047A57D /* ReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2034DC61221A8F1E0047A57D /* ReportTableViewCell.swift */; };
+		2034DC64221A8F1E0047A57D /* ReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2034DC62221A8F1E0047A57D /* ReportTableViewCell.xib */; };
+		2034DC66221A9CCE0047A57D /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2034DC65221A9CCE0047A57D /* ForgetPasswordViewController.swift */; };
 		2036E8702211406B005E56BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036E86F2211406B005E56BC /* AppDelegate.swift */; };
 		2036E8722211406B005E56BC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036E8712211406B005E56BC /* LoginViewController.swift */; };
 		2036E8752211406C005E56BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2036E8732211406C005E56BC /* Main.storyboard */; };
@@ -44,6 +54,16 @@
 		2034DC49221A80530047A57D /* drop_down_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drop_down_arrow@2x.png"; sourceTree = "<group>"; };
 		2034DC4A221A80540047A57D /* BCDropDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCDropDownButton.h; sourceTree = "<group>"; };
 		2034DC4B221A80540047A57D /* BCDropDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCDropDownButton.m; sourceTree = "<group>"; };
+		2034DC50221A8CA80047A57D /* ShopListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListViewController.swift; sourceTree = "<group>"; };
+		2034DC52221A8D1E0047A57D /* MobileBrandListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileBrandListViewController.swift; sourceTree = "<group>"; };
+		2034DC54221A8E4E0047A57D /* ReportListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListViewController.swift; sourceTree = "<group>"; };
+		2034DC57221A8E9B0047A57D /* ShopListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListTableViewCell.swift; sourceTree = "<group>"; };
+		2034DC58221A8E9B0047A57D /* ShopListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopListTableViewCell.xib; sourceTree = "<group>"; };
+		2034DC5D221A8F050047A57D /* MobileBrandTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileBrandTableViewCell.swift; sourceTree = "<group>"; };
+		2034DC5E221A8F050047A57D /* MobileBrandTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MobileBrandTableViewCell.xib; sourceTree = "<group>"; };
+		2034DC61221A8F1E0047A57D /* ReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewCell.swift; sourceTree = "<group>"; };
+		2034DC62221A8F1E0047A57D /* ReportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportTableViewCell.xib; sourceTree = "<group>"; };
+		2034DC65221A9CCE0047A57D /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		2036E86C2211406B005E56BC /* Global.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Global.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2036E86F2211406B005E56BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2036E8712211406B005E56BC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +120,19 @@
 			path = BCDropDown;
 			sourceTree = "<group>";
 		};
+		2034DC56221A8E660047A57D /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				2034DC57221A8E9B0047A57D /* ShopListTableViewCell.swift */,
+				2034DC58221A8E9B0047A57D /* ShopListTableViewCell.xib */,
+				2034DC5D221A8F050047A57D /* MobileBrandTableViewCell.swift */,
+				2034DC5E221A8F050047A57D /* MobileBrandTableViewCell.xib */,
+				2034DC61221A8F1E0047A57D /* ReportTableViewCell.swift */,
+				2034DC62221A8F1E0047A57D /* ReportTableViewCell.xib */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
 		2036E8632211406B005E56BC = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +158,7 @@
 		2036E86E2211406B005E56BC /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				2034DC56221A8E660047A57D /* TableViewCells */,
 				2034DC45221A803F0047A57D /* BCDropDown */,
 				2036E8A022114681005E56BC /* Utils */,
 				2036E89F22114101005E56BC /* ViewControllers */,
@@ -159,6 +193,10 @@
 			isa = PBXGroup;
 			children = (
 				2036E8712211406B005E56BC /* LoginViewController.swift */,
+				2034DC50221A8CA80047A57D /* ShopListViewController.swift */,
+				2034DC52221A8D1E0047A57D /* MobileBrandListViewController.swift */,
+				2034DC54221A8E4E0047A57D /* ReportListViewController.swift */,
+				2034DC65221A9CCE0047A57D /* ForgetPasswordViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -292,10 +330,13 @@
 			files = (
 				2036E87A2211407B005E56BC /* LaunchScreen.storyboard in Resources */,
 				2034DC4E221A80540047A57D /* drop_down_arrow@2x.png in Resources */,
+				2034DC64221A8F1E0047A57D /* ReportTableViewCell.xib in Resources */,
+				2034DC5A221A8E9B0047A57D /* ShopListTableViewCell.xib in Resources */,
 				2034DC4D221A80540047A57D /* drop_down_arrow.png in Resources */,
 				2036E8772211407B005E56BC /* Assets.xcassets in Resources */,
 				2034DC4C221A80540047A57D /* drop_down_arrow@3x.png in Resources */,
 				2036E8752211406C005E56BC /* Main.storyboard in Resources */,
+				2034DC60221A8F050047A57D /* MobileBrandTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,12 +409,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2034DC53221A8D1E0047A57D /* MobileBrandListViewController.swift in Sources */,
 				2036E8722211406B005E56BC /* LoginViewController.swift in Sources */,
+				2034DC51221A8CA80047A57D /* ShopListViewController.swift in Sources */,
+				2034DC63221A8F1E0047A57D /* ReportTableViewCell.swift in Sources */,
 				2036E8A32211469C005E56BC /* NetworkHelper.swift in Sources */,
 				2036E8A62211469F005E56BC /* Constant.swift in Sources */,
+				2034DC59221A8E9B0047A57D /* ShopListTableViewCell.swift in Sources */,
+				2034DC66221A9CCE0047A57D /* ForgetPasswordViewController.swift in Sources */,
 				2036E8702211406B005E56BC /* AppDelegate.swift in Sources */,
+				2034DC5F221A8F050047A57D /* MobileBrandTableViewCell.swift in Sources */,
 				2036E8A42211469C005E56BC /* NetworkReachability.swift in Sources */,
 				2034DC4F221A80540047A57D /* BCDropDownButton.m in Sources */,
+				2034DC55221A8E4E0047A57D /* ReportListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

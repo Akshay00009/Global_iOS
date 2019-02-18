@@ -65,7 +65,10 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,NVActivity
 
     }
     @IBAction func loginBtnClicked(_ sender: Any) {
-        login()
+        
+        let shopListVc = self.storyboard?.instantiateViewController(withIdentifier: "ShopListViewController") as? ShopListViewController
+        self.navigationController?.pushViewController(shopListVc!, animated: true)
+    //login()
     }
     func login() {
         startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
