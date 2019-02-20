@@ -54,7 +54,17 @@ class MobileBrandTableViewCell: UITableViewCell,UITextFieldDelegate {
 }
 
 class MobileBrandTableViewCellModel {
-    init(shopListDict : JSON) {
-        
+    let sID, brandID, code, lat: String
+    let long, brand, stock: String
+
+    init(mobListDict : JSON) {
+        self.sID = mobListDict["s_id"].string == nil ? "" :  mobListDict["s_id"].string!
+        self.brandID = mobListDict["brand_id"].string == nil ? "" :  mobListDict["brand_id"].string!
+        self.code = mobListDict["code"].string == nil ? "" :  mobListDict["code"].string!
+        self.lat = mobListDict["lat"].string == nil ? "" :  mobListDict["lat"].string!
+        self.long = mobListDict["long"].string == nil ? "" :  mobListDict["long"].string!
+        self.brand = mobListDict["brand"].string == nil ? "" :  mobListDict["brand"].string!
+        self.stock = mobListDict["stock"].string == nil ? "" :  mobListDict["stock"].string!
+
     }
 }

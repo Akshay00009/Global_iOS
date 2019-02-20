@@ -66,7 +66,7 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,NVActivity
     }
     @IBAction func loginBtnClicked(_ sender: Any) {
         
-        let shopListVc = self.storyboard?.instantiateViewController(withIdentifier: "MobileBrandListViewController") as? MobileBrandListViewController
+        let shopListVc = self.storyboard?.instantiateViewController(withIdentifier: "ShopListViewController") as? ShopListViewController
         self.navigationController?.pushViewController(shopListVc!, animated: true)
     //login()
     }
@@ -84,7 +84,7 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,NVActivity
                 self.dismiss(animated: false, completion: {
                     self.showAlert(message: kNoInterNetMessage, Title: KLoginFailed )
                 })
-            }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 {
+            }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
                 self.showAlert(message: kSomethingGetWrong, Title: "Error")
             }
         })

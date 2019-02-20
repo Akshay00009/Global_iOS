@@ -7,8 +7,9 @@
 //
 
 import UIKit
-import SwiftyJSON
-class MobileBrandListViewController: UIViewController {
+import NVActivityIndicatorView
+
+class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewable {
     
 
     @IBOutlet weak var mobileListTableView: UITableView!
@@ -25,9 +26,38 @@ class MobileBrandListViewController: UIViewController {
     }
     
     @IBAction func updateStockAction(_ sender: Any) {
-        
+        updateStock()
     }
 
+    func updateStock() {
+        startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
+        let url = "http://globemobility.in/admin/Mobile/getShopList"
+        let Parameter: [String : AnyObject] = ["Route_id": 1 as AnyObject]
+        
+        NetworkHelper.shareWithPars(parameter: Parameter as NSDictionary,method: .post, url: url, completion: { (result) in
+            self.stopAnimating()
+            let response = result as NSDictionary
+            let resultValue = response["Result"] as! String
+            if resultValue == "True" {
+                let dataArray = response["data"] as! NSArray
+                for dict in dataArray {
+                    
+                }
+                print(dataArray)
+                
+            }
+        }, completionError:  { (error) in
+            self.stopAnimating()
+            let errorResponse = error as NSDictionary
+            if errorResponse.value(forKey: "errorType") as! NSNumber == 1 {
+                self.present(AppUtility.showInternetErrorMessage(title: "", errorMessage: kNoInterNetMessage, completion: {
+                }), animated: true, completion: nil)
+            }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
+                self.showAlert(message: kSomethingGetWrong, Title: "Error")
+            }
+        })
+    }
+    
     func  showAlert(message: String = "", Title: String = "") {
         let alertController = UIAlertController(title: Title, message: message, preferredStyle: UIAlertController.Style.alert)
         let retryAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {

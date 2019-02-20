@@ -20,8 +20,29 @@ open class AppUtility {
         label.sizeToFit()
         return label.frame.height
     }
+    static func showInternetErrorMessage(title: String, errorMessage: String, completion: (() -> Void)!) -> UIAlertController {
+        let alertTitle = title != "" ? "Oops.." : ""
+        let alertController = UIAlertController(title: alertTitle, message: errorMessage, preferredStyle: UIAlertController.Style.alert)
+        let retryAction = UIAlertAction(title: "Retry", style: UIAlertAction.Style.default, handler: {
+            alert -> Void in
+            completion()
+        })
+        alertController.addAction(retryAction)
+        return alertController
+    }
+
 }
 
+struct FontStyle {
+    struct FontName {
+        static let kDefault = "Lato"
+        static let kDefaultBold = "Lato-Bold"
+        static let kCustom = "Lato"
+    }
+    struct FontSize {
+        static let kDefault: CGFloat = 17.0
+    }
+}
 
 //************Extentions*****************************************
 
