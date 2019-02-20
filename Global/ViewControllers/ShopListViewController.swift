@@ -11,28 +11,59 @@ import SwiftyJSON
 import NVActivityIndicatorView
 
 class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivityIndicatorViewable {
-
+    
     @IBOutlet weak var bcDropDownBtn: BCDropDownButton!
     @IBOutlet weak var shopListTableView: UITableView!
     var shopListArray = [ShopListTableViewCellModel]()
-    
+    var routeListArray = [AnyObject]()
     override func viewDidLoad() {
         super.viewDidLoad()
         shopListTableView.delegate = self
         shopListTableView.dataSource = self
         self.shopListTableView.register(UINib(nibName: "ShopListTableViewCell", bundle: nil), forCellReuseIdentifier: "ShopListTableViewCell")
-        self.bcDropDownBtn.items = ["1","2","3"]
         bcDropDownBtn.delegate = self
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
-        roadListApiCall()
+        routeListApiCall()
     }
-    func roadListApiCall() {
+    
+    func routeListApiCall() {
+        let url = "http://globemobility.in/admin/Mobile/userlisting"
+        let Parameter: [String : AnyObject] = ["user_id": 45 as AnyObject]
+        NetworkHelper.shareWithPars(parameter: Parameter as NSDictionary,method: .post, url: url, completion: { (result) in
+            self.stopAnimating()
+            let response = result as NSDictionary
+            let resultValue = response["Result"] as! String
+            var array = [AnyObject]()
+            if resultValue == "True" {
+                let dataArray : NSArray = response["data"] as! NSArray
+                for dict in dataArray {
+                    let dic = dict as? NSDictionary
+                    self.routeListArray.append(dic!)
+                    array.append(dic?.value(forKey: "routname") as AnyObject)
+                }
+                array.insert("Select Route" as AnyObject, at:0)
+                self.bcDropDownBtn.items = array
+            }
+        }, completionError:  { (error) in
+            self.stopAnimating()
+            let errorResponse = error as NSDictionary
+            if errorResponse.value(forKey: "errorType") as! NSNumber == 1 {
+                self.present(AppUtility.showInternetErrorMessage(title: "", errorMessage: kNoInterNetMessage, completion: {
+                }), animated: true, completion: nil)
+            }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
+                self.showAlert(message: kSomethingGetWrong, Title: "Error")
+            }
+        })
+        
+    }
+    
+    
+    func shopListApiCall(routeId : String) {
         startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
         let url = "http://globemobility.in/admin/Mobile/getShopList"
-        let Parameter: [String : AnyObject] = ["Route_id": 1 as AnyObject]
-
+        let Parameter: [String : AnyObject] = ["Route_id": routeId as AnyObject]
         NetworkHelper.shareWithPars(parameter: Parameter as NSDictionary,method: .post, url: url, completion: { (result) in
             self.stopAnimating()
             let response = result as NSDictionary
@@ -42,7 +73,6 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
                 for dict in dataArray {
                     self.shopListArray.append(ShopListTableViewCellModel(shopListDict: dict as! NSDictionary))
                 }
-                print(self.shopListArray)
                 self.shopListTableView.reloadData()
             }
         }, completionError:  { (error) in
@@ -67,9 +97,14 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
         alertController.addAction(retryAction)
         self.present(alertController, animated: true, completion: nil)
     }
-
+    
     func dropDownButton(_ button: BCDropDownButton!, didChangeValue value: String!, with index: Int) {
         print(value,index)
+        if index != 0 {
+            let ind = index - 1
+            let routeId = routeListArray[ind]["rout_id"]
+            shopListApiCall(routeId : routeId as! String)
+        }
     }
 }
 extension ShopListViewController : UITableViewDataSource,UITableViewDelegate {
