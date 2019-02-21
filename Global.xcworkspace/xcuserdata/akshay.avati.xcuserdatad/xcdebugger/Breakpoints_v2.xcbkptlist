@@ -10,23 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Global/TableViewCells/MobileBrandTableViewCell.swift"
-            timestampString = "572189272.943445"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "textField(_:shouldChangeCharactersIn:replacementString:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Global/TableViewCells/MobileBrandTableViewCell.swift"
-            timestampString = "572189272.944052"
+            timestampString = "572428027.338699"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
@@ -41,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Global/ViewControllers/MobileBrandListViewController.swift"
-            timestampString = "572347505.631072"
+            filePath = "Global/New Group/NetworkHelper.swift"
+            timestampString = "572428033.302634"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "updateStock()"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "shareWithPars(parameter:method:url:completion:completionError:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Global/TableViewCells/MobileBrandTableViewCell.swift"
-            timestampString = "572189272.944491"
+            filePath = "Global/New Group/NetworkHelper.swift"
+            timestampString = "572428035.374562"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "textField(_:shouldChangeCharactersIn:replacementString:)"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "shareWithPars(parameter:method:url:completion:completionError:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

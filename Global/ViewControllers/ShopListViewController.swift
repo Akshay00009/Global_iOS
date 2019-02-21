@@ -9,28 +9,72 @@
 import UIKit
 import SwiftyJSON
 import NVActivityIndicatorView
+import CoreLocation
 
-class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivityIndicatorViewable {
+class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivityIndicatorViewable,CLLocationManagerDelegate {
     
     @IBOutlet weak var bcDropDownBtn: BCDropDownButton!
     @IBOutlet weak var shopListTableView: UITableView!
     var shopListArray = [ShopListTableViewCellModel]()
     var routeListArray = [AnyObject]()
+    var userId = ""
+    var longitudeValue = ""
+    var latitudeValue = ""
+
+    var currentLocation: CLLocation! = nil
+    let locationManager = CLLocationManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         shopListTableView.delegate = self
         shopListTableView.dataSource = self
         self.shopListTableView.register(UINib(nibName: "ShopListTableViewCell", bundle: nil), forCellReuseIdentifier: "ShopListTableViewCell")
         bcDropDownBtn.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        
+        // For use when the app is open
+        //locationManager.requestWhenInUseAuthorization()
+        
+        // If location services is enabled get the users location
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest // You can change the locaiton accuary here.
+            locationManager.startUpdatingLocation()
+            currentLocation = locationManager.location
+        }
+        
+
         // Do any additional setup after loading the view.
     }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            let lat = location.coordinate.longitude
+            let long = location.coordinate.latitude
+            let latValue = Double(String(format: "%.7f", lat))
+            let longValue = Double(String(format: "%.7f", long))
+
+            longitudeValue = "\(latValue)"
+            latitudeValue  = "\(longValue)"
+        }
+    }
+    
+    // If we have been deined access give the user the option to change it
+    
+    @available(iOS 4.2, *)
+    public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
+    {
+        locationManager.startUpdatingLocation()
+    }
+
     override func viewWillAppear(_ animated: Bool) {
+        shopListTableView.isHidden = true
         routeListApiCall()
     }
     
     func routeListApiCall() {
         let url = "http://globemobility.in/admin/Mobile/userlisting"
-        let Parameter: [String : AnyObject] = ["user_id": 45 as AnyObject]
+        let Parameter: [String : AnyObject] = ["user_id": userId as AnyObject]
         NetworkHelper.shareWithPars(parameter: Parameter as NSDictionary,method: .post, url: url, completion: { (result) in
             self.stopAnimating()
             let response = result as NSDictionary
@@ -50,7 +94,9 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
             self.stopAnimating()
             let errorResponse = error as NSDictionary
             if errorResponse.value(forKey: "errorType") as! NSNumber == 1 {
+                self.shopListTableView.isHidden = true
                 self.present(AppUtility.showInternetErrorMessage(title: "", errorMessage: kNoInterNetMessage, completion: {
+                    self.routeListApiCall()
                 }), animated: true, completion: nil)
             }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
                 self.showAlert(message: kSomethingGetWrong, Title: "Error")
@@ -69,17 +115,24 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
             let response = result as NSDictionary
             let resultValue = response["Result"] as! String
             if resultValue == "True" {
+                self.shopListArray.removeAll()
                 let dataArray : NSArray = response["data"] as! NSArray
                 for dict in dataArray {
                     self.shopListArray.append(ShopListTableViewCellModel(shopListDict: dict as! NSDictionary))
                 }
+                self.shopListTableView.isHidden = false
                 self.shopListTableView.reloadData()
+            } else {
+                self.shopListTableView.isHidden = true
+                self.showAlert(message: response["Message"] as! String, Title: "Alert")
             }
         }, completionError:  { (error) in
             self.stopAnimating()
             let errorResponse = error as NSDictionary
             if errorResponse.value(forKey: "errorType") as! NSNumber == 1 {
+                self.shopListTableView.isHidden = true
                 self.present(AppUtility.showInternetErrorMessage(title: "", errorMessage: kNoInterNetMessage, completion: {
+                    self.shopListApiCall(routeId: routeId)
                 }), animated: true, completion: nil)
             }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
                 self.showAlert(message: kSomethingGetWrong, Title: "Error")
@@ -102,12 +155,31 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
         print(value,index)
         if index != 0 {
             let ind = index - 1
-            let routeId = routeListArray[ind]["rout_id"]
-            shopListApiCall(routeId : routeId as! String)
+            print(routeListArray)
+            let routeId = routeListArray[ind]["rout_id"] as! String
+            shopListApiCall(routeId : routeId )
+        } else {
+            self.shopListTableView.isHidden = true
         }
     }
 }
-extension ShopListViewController : UITableViewDataSource,UITableViewDelegate {
+extension ShopListViewController : UITableViewDataSource,UITableViewDelegate,shopInBtnTableViewCellDelegate {
+    func shopIn(selectedIndexPath: IndexPath,buttonName: String) {
+        if buttonName == "in" {
+            if  shopListArray[selectedIndexPath.row].lat == latitudeValue &&  shopListArray[selectedIndexPath.row].long == longitudeValue {
+                let mobListVc = storyboard?.instantiateViewController(withIdentifier: "MobileBrandListViewController") as? MobileBrandListViewController
+                mobListVc!.shopId = shopListArray[selectedIndexPath.row].shopID
+                mobListVc!.lat = shopListArray[selectedIndexPath.row].lat
+                mobListVc!.long = shopListArray[selectedIndexPath.row].long
+                self.navigationController?.pushViewController(mobListVc!, animated: true)
+            }
+        } else if buttonName == "report" {
+            let repListVc = storyboard?.instantiateViewController(withIdentifier: "ReportListViewController") as? ReportListViewController
+            repListVc!.shopId = shopListArray[selectedIndexPath.row].shopID
+            self.navigationController?.pushViewController(repListVc!, animated: true)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return shopListArray.count
     }
@@ -116,12 +188,8 @@ extension ShopListViewController : UITableViewDataSource,UITableViewDelegate {
         let cell: ShopListTableViewCell = shopListTableView.dequeueReusableCell(withIdentifier: "ShopListTableViewCell", for: indexPath) as! ShopListTableViewCell
          let shopdict = shopListArray[indexPath.row]
         cell.setCell(viewModel : shopdict , indexPath : indexPath)
+        cell.delegateObject = self
         return cell
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let shopListVc = self.storyboard?.instantiateViewController(withIdentifier: "MobileBrandListViewController") as? MobileBrandListViewController
-        self.navigationController?.pushViewController(shopListVc!, animated: true)
-
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension

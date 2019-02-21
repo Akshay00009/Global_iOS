@@ -65,29 +65,52 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,NVActivity
 
     }
     @IBAction func loginBtnClicked(_ sender: Any) {
-        
-        let shopListVc = self.storyboard?.instantiateViewController(withIdentifier: "ShopListViewController") as? ShopListViewController
-        self.navigationController?.pushViewController(shopListVc!, animated: true)
-    //login()
+    login()
     }
+    
+    func valiadtion() -> Bool {
+        if passwordTxtField.text == "" ||  usernameTextField.text == "" {
+            self.showAlert(message: "Please Enter Username and Password", Title: "Alert")
+            return false
+        }
+        return true
+    }
+    
     func login() {
-        startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
-        let url = "http://globemobility.in/admin/Mobile/checklogin?userid=\(String(describing: usernameTextField.text!))&password=\(String(describing: passwordTxtField.text!))&latitude=\(longitudeValue)&longitude=\(latitudeValue)"
-        NetworkHelper.shareWithPars(parameter: nil,method: .get, url: url, completion: { (result) in
-            self.stopAnimating()
-            let response = result as NSDictionary
-            print(response)
-        }, completionError:  { (error) in
-            self.stopAnimating()
-            let errorResponse = error as NSDictionary
-            if errorResponse.value(forKey: "errorType") as! NSNumber == 1 {
-                self.dismiss(animated: false, completion: {
-                    self.showAlert(message: kNoInterNetMessage, Title: KLoginFailed )
-                })
-            }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
-                self.showAlert(message: kSomethingGetWrong, Title: "Error")
-            }
-        })
+        if valiadtion() {
+            startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
+            let url = "http://globemobility.in/admin/Mobile/checklogin"//"http://globemobility.in/admin/Mobile/checklogin?userid=\(String(describing: usernameTextField.text!))&password=\(String(describing: passwordTxtField.text!))&latitude=\(longitudeValue)&longitude=\(latitudeValue)"
+            let Parameter: [String : AnyObject] = ["username": usernameTextField.text! as AnyObject,"password": passwordTxtField.text! as AnyObject]
+            NetworkHelper.shareWithPars(parameter: Parameter as NSDictionary,method: .post, url: url, completion: { (result) in
+                self.stopAnimating()
+                let response = result as NSDictionary
+                let resultValue = response["Result"] as! String
+                if resultValue == "True" {
+                    let data =  response["data"] as? NSArray
+                    let dict = data![0] as! NSDictionary
+                    let userid = dict["bms_user_id"] as? String
+                    let userName = dict["bms_user_name"] as? String
+                    UserDefaults.standard.set(userName, forKey: kuserName)
+                    UserDefaults.standard.set(userName, forKey: kuserId)
+                    let shopListVc = self.storyboard?.instantiateViewController(withIdentifier: "ShopListViewController") as? ShopListViewController
+                    shopListVc?.userId = userid!
+                    self.navigationController?.pushViewController(shopListVc!, animated: true)
+                } else {
+                      let message = response["Message"] as! String
+                    self.showAlert(message: message, Title: "Alert")
+                }
+            }, completionError:  { (error) in
+                self.stopAnimating()
+                let errorResponse = error as NSDictionary
+                if errorResponse.value(forKey: "errorType") as! NSNumber == 1 {
+                    self.dismiss(animated: false, completion: {
+                        self.showAlert(message: kNoInterNetMessage, Title: KLoginFailed )
+                    })
+                }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
+                    self.showAlert(message: kSomethingGetWrong, Title: "Error")
+                }
+            })
+        }
     }
     
     func  showAlert(message: String = "", Title: String = "") {

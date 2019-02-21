@@ -9,7 +9,7 @@
 import UIKit
 
 class ReportListViewController: UIViewController {
-
+    var shopId = ""
     override func viewDidLoad() {
         super.viewDidLoad()
 

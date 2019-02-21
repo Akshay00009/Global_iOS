@@ -9,13 +9,16 @@
 import UIKit
 import SwiftyJSON
 protocol MobileBrandTableViewCellDelegate {
-    func showCountText(count : String,indexPath : IndexPath)
+    func showCountText(count : String,indexPath : IndexPath, show : Bool)
 }
 class MobileBrandTableViewCell: UITableViewCell,UITextFieldDelegate {
-
+    
+    @IBOutlet weak var brandName: UILabel!
+    
+    @IBOutlet weak var stockLevel: UILabel!
     @IBOutlet weak var countTxtField: UITextField!
     var delegateObject : MobileBrandTableViewCellDelegate? = nil
-    var indexPath = IndexPath()
+    var selectedIndexPath = IndexPath()
     override func awakeFromNib() {
         super.awakeFromNib()
         countTxtField.delegate = self
@@ -23,9 +26,11 @@ class MobileBrandTableViewCell: UITableViewCell,UITextFieldDelegate {
         // Initialization code
     }
 
-    func setupCell(dict : NSDictionary, index : IndexPath) {
+    func  setCell(viewModel : MobileBrandTableViewCellModel, indexPath:IndexPath) {
         countTxtField.delegate = self
-        indexPath = index
+        stockLevel.text = viewModel.stock
+        brandName.text = viewModel.brand
+        selectedIndexPath = indexPath
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -40,9 +45,11 @@ class MobileBrandTableViewCell: UITableViewCell,UITextFieldDelegate {
         let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
 
-        if Int(newString as String)! > 10 {
+        if Int(newString as String)! > Int(stockLevel.text!) ?? 0 {
             textField.text = ""
-            delegateObject?.showCountText(count: countTxtField.text!, indexPath: indexPath)
+            delegateObject?.showCountText(count: newString as String, indexPath: selectedIndexPath, show: false)
+        } else {
+            delegateObject?.showCountText(count: newString as String, indexPath: selectedIndexPath, show: true)
         }
         return true
     }
@@ -57,14 +64,13 @@ class MobileBrandTableViewCellModel {
     let sID, brandID, code, lat: String
     let long, brand, stock: String
 
-    init(mobListDict : JSON) {
-        self.sID = mobListDict["s_id"].string == nil ? "" :  mobListDict["s_id"].string!
-        self.brandID = mobListDict["brand_id"].string == nil ? "" :  mobListDict["brand_id"].string!
-        self.code = mobListDict["code"].string == nil ? "" :  mobListDict["code"].string!
-        self.lat = mobListDict["lat"].string == nil ? "" :  mobListDict["lat"].string!
-        self.long = mobListDict["long"].string == nil ? "" :  mobListDict["long"].string!
-        self.brand = mobListDict["brand"].string == nil ? "" :  mobListDict["brand"].string!
-        self.stock = mobListDict["stock"].string == nil ? "" :  mobListDict["stock"].string!
-
+    init(mobListDict : NSDictionary) {
+        self.sID = mobListDict["s_id"] as? String  == nil ? "" :  mobListDict["s_id"] as! String
+        self.brandID = mobListDict["brand_id"] as? String  == nil ? "" :  mobListDict["brand_id"] as! String
+        self.code = mobListDict["code"] as? String  == nil ? "" :  mobListDict["code"] as! String
+        self.lat = mobListDict["lat"] as? String  == nil ? "" :  mobListDict["lat"] as! String
+        self.long = mobListDict["long"] as? String  == nil ? "" :  mobListDict["long"] as! String
+        self.brand = mobListDict["brand"] as? String  == nil ? "" :  mobListDict["brand"] as! String
+        self.stock = mobListDict["stock"] as? String  == nil ? "" :  mobListDict["stock"] as! String
     }
 }

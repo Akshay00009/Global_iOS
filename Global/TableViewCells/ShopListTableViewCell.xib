@@ -78,7 +78,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEY-29-tfd">
-                        <rect key="frame" x="136" y="126.5" width="304" height="20.5"/>
+                        <rect key="frame" x="136" y="126.5" width="319" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -93,6 +93,14 @@
                         <state key="normal" title="In">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="inBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hrH-SR-uUp"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nL-BL-UbZ">
                         <rect key="frame" x="465" y="102" width="80" height="40"/>
@@ -104,6 +112,14 @@
                         <state key="normal" title="Report">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="reportBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4HB-fO-rXb"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PHONE CARE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUi-qL-yvX">
                         <rect key="frame" x="20" y="10" width="197" height="21"/>
@@ -117,6 +133,7 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="2nL-BL-UbZ" firstAttribute="leading" secondItem="nEY-29-tfd" secondAttribute="trailing" constant="10" id="0uO-eq-WC8"/>
                     <constraint firstItem="2nL-BL-UbZ" firstAttribute="leading" secondItem="3bv-eW-mbZ" secondAttribute="trailing" constant="25" id="1dQ-HH-4xF"/>
                     <constraint firstItem="3bv-eW-mbZ" firstAttribute="leading" secondItem="3nY-rx-Ehw" secondAttribute="trailing" constant="38.5" id="4BF-dq-1G1"/>
                     <constraint firstItem="3nY-rx-Ehw" firstAttribute="leading" secondItem="7Ob-Px-3wp" secondAttribute="leading" id="4gx-zm-rOc"/>
@@ -125,7 +142,6 @@
                     <constraint firstItem="9eB-ar-C7b" firstAttribute="top" secondItem="dUi-qL-yvX" secondAttribute="bottom" constant="8" id="DNU-Ik-LhI"/>
                     <constraint firstItem="3nY-rx-Ehw" firstAttribute="top" secondItem="7Ob-Px-3wp" secondAttribute="bottom" constant="9" id="EU5-nV-Thg"/>
                     <constraint firstItem="yEl-bm-L5Y" firstAttribute="trailing" secondItem="PqW-K8-EPA" secondAttribute="trailing" id="IKN-EA-IaK"/>
-                    <constraint firstItem="nEY-29-tfd" firstAttribute="trailing" secondItem="3bv-eW-mbZ" secondAttribute="trailing" id="Mhx-QV-3Iv"/>
                     <constraint firstItem="7Ob-Px-3wp" firstAttribute="top" secondItem="9eB-ar-C7b" secondAttribute="bottom" constant="6" id="Nkm-tE-kur"/>
                     <constraint firstItem="beY-8m-y8S" firstAttribute="leading" secondItem="PqW-K8-EPA" secondAttribute="trailing" constant="25" id="PRc-vb-cYV"/>
                     <constraint firstItem="dUi-qL-yvX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="R2W-nm-Bdc"/>

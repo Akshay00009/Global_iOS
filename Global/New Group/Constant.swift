@@ -8,6 +8,8 @@ let KLoginFailed = "Failed to Login."
 let kActivityIndicatorSize = CGSize(width: 50, height: 50)
 let kLoadingMessageForHud  = "Loading..."
 let kActivityIndicatorNumber = 6
+let kuserName = "UserName"
+let kuserId = "userId"
 
 var loggedInUserID = ""
 

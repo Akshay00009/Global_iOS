@@ -8,12 +8,19 @@
 
 import UIKit
 import SwiftyJSON
+protocol shopInBtnTableViewCellDelegate {
+    func shopIn(selectedIndexPath : IndexPath,buttonName : String)
+    
+}
+
 class ShopListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var mobileNo: UILabel!
     @IBOutlet weak var email: UILabel!
     @IBOutlet weak var ownerName: UILabel!
+    var delegateObject : shopInBtnTableViewCellDelegate? = nil
+    var selectedindexPath = IndexPath()
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,10 +33,18 @@ class ShopListTableViewCell: UITableViewCell {
     }
     
     func  setCell(viewModel : ShopListTableViewCellModel, indexPath:IndexPath) {
+        selectedindexPath = indexPath
         address.text = viewModel.address
         mobileNo.text = viewModel.mob
         email.text = viewModel.email
         ownerName.text = viewModel.ownername
+    }
+
+    @IBAction func inBtnAction(_ sender: Any) {
+        delegateObject?.shopIn(selectedIndexPath: selectedindexPath, buttonName: "in")
+    }
+    @IBAction func reportBtnAction(_ sender: Any) {
+        delegateObject?.shopIn(selectedIndexPath: selectedindexPath, buttonName: "report")
     }
 }
 
@@ -50,8 +65,6 @@ class ShopListTableViewCellModel {
         self.address =  shopListDict["address"] as? String == nil ? "NA" :  shopListDict["address"] as! String
         self.lat =  shopListDict["lat"] as? String == nil ? "NA" :  shopListDict["lat"] as! String
         self.long =  shopListDict["long"] as? String == nil ? "NA" :  shopListDict["long"] as! String
-
     }
-    
 }
 
