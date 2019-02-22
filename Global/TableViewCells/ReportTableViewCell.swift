@@ -25,7 +25,7 @@ class ReportTableViewCell: UITableViewCell {
 }
 
 class ReportTableViewCellCellModel {
-    init(shopListDict : JSON) {
+    init(reportListDict : NSDictionary) {
         
     }
 }

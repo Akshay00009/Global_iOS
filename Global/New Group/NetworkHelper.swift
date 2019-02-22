@@ -8,7 +8,7 @@ public class NetworkHelper : UIViewController {
     
     @available(*, deprecated, message: "use shareWithPars: instead")
 
-    public static func shareWithPars(parameter:NSDictionary? ,method: HTTPMethod, url: String, completion: @escaping (_ result: [String : Any]) -> Void, completionError: @escaping (_ error:  [String : Any]) -> Void)  {
+    public static func shareWithPars(parameter: Any? ,method: HTTPMethod, url: String, completion: @escaping (_ result: [String : Any]) -> Void, completionError: @escaping (_ error:  [String : Any]) -> Void)  {
         let status = Reachability.isConnectedToNetwork()
         switch status {
         case .unknown,.offline:

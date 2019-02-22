@@ -67,27 +67,29 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
 
     
     @IBAction func updateStockAction(_ sender: Any) {
-        //updateStock()
+     updateStock()
     }
+    @IBAction func backBtnAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: false)
+    }
+    
+    @IBAction func chackOutBtnAction(_ sender: Any) {
+        let reportListVc = self.storyboard?.instantiateViewController(withIdentifier: "ReportListViewController") as? ReportListViewController
+        reportListVc?.shopid = shopId
+        self.navigationController?.pushViewController(reportListVc!, animated: true)
 
+    }
     func updateStock() {
         startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
-        let url = "http://globemobility.in/admin/Mobile/getBrandList"
-        let Parameter: [String : AnyObject] = ["shopid": shopId as AnyObject,"latitude": lat as AnyObject,"longitude": long as AnyObject,]
-        NetworkHelper.shareWithPars(parameter: Parameter as NSDictionary,method: .post, url: url, completion: { (result) in
+        let url = "http://globemobility.in/admin/Mobile/updateStock"
+        let Parameter = updateArray 
+        NetworkHelper.shareWithPars(parameter: Parameter ,method: .post, url: url, completion: { (result) in
             self.stopAnimating()
             let response = result as NSDictionary
             let resultValue = response["Result"] as! String
             if resultValue == "True" {
-                self.mobileBrandArray.removeAll()
-                let dataArray : NSArray = response["data"] as! NSArray
-                for dict in dataArray {
-                    self.mobileBrandArray.append(MobileBrandTableViewCellModel(mobListDict: dict as! NSDictionary))
-                }
-                self.mobileListTableView.isHidden = false
-                self.mobileListTableView.reloadData()
+                self.showAlert(message: response["Message"] as! String, Title: "Alert")
             } else {
-                self.mobileListTableView.isHidden = true
                 self.showAlert(message: response["Message"] as! String, Title: "Alert")
             }
         }, completionError:  { (error) in
@@ -133,8 +135,10 @@ extension MobileBrandListViewController : UITableViewDelegate,UITableViewDataSou
                          "shortqua": mobileBrandArray[indexPath.row].stock,
                          "lattude": mobileBrandArray[indexPath.row].lat,
                          "longitude": mobileBrandArray[indexPath.row].long,
-                         "username": UserDefaults.value(forKey: kuserName),
-                         "userid": UserDefaults.value(forKey: kuserId)]
+                         "username": UserDefaults.standard.value(forKey: kuserName),
+                         "userid": UserDefaults.standard.value(forKey: kuserId)]
+            updateArray.append(param as! [String : String])
+            print(updateArray)
         } else {
             self.showAlert(message: "Please Enter text below \([mobileBrandArray[indexPath.row].stock])", Title: "Alert")
         }

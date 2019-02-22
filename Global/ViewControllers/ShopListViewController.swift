@@ -166,20 +166,20 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
 extension ShopListViewController : UITableViewDataSource,UITableViewDelegate,shopInBtnTableViewCellDelegate {
     func shopIn(selectedIndexPath: IndexPath,buttonName: String) {
         if buttonName == "in" {
-            if  shopListArray[selectedIndexPath.row].lat == latitudeValue &&  shopListArray[selectedIndexPath.row].long == longitudeValue {
+//            if  shopListArray[selectedIndexPath.row].lat == latitudeValue &&  shopListArray[selectedIndexPath.row].long == longitudeValue {
                 let mobListVc = storyboard?.instantiateViewController(withIdentifier: "MobileBrandListViewController") as? MobileBrandListViewController
                 mobListVc!.shopId = shopListArray[selectedIndexPath.row].shopID
                 mobListVc!.lat = shopListArray[selectedIndexPath.row].lat
                 mobListVc!.long = shopListArray[selectedIndexPath.row].long
                 self.navigationController?.pushViewController(mobListVc!, animated: true)
-            }
-        } else if buttonName == "report" {
-            let repListVc = storyboard?.instantiateViewController(withIdentifier: "ReportListViewController") as? ReportListViewController
-            repListVc!.shopId = shopListArray[selectedIndexPath.row].shopID
-            self.navigationController?.pushViewController(repListVc!, animated: true)
-        }
+      //      }
+//        } else if buttonName == "report" {
+//            let repListVc = storyboard?.instantiateViewController(withIdentifier: "ReportListViewController") as? ReportListViewController
+//            repListVc!.shopId = shopListArray[selectedIndexPath.row].shopID
+//            self.navigationController?.pushViewController(repListVc!, animated: true)
+//        }
     }
-    
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return shopListArray.count
     }
