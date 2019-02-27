@@ -26,6 +26,7 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        shopListTableView.isHidden = true
         shopListTableView.delegate = self
         shopListTableView.dataSource = self
         self.shopListTableView.register(UINib(nibName: "ShopListTableViewCell", bundle: nil), forCellReuseIdentifier: "ShopListTableViewCell")
@@ -53,9 +54,6 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
             let long = location.coordinate.latitude
             let latValue = Double(String(format: "%.7f", lat))
             let longValue = Double(String(format: "%.7f", long))
-
-            longitudeValue = "\(latValue)"
-            latitudeValue  = "\(longValue)"
         }
     }
     
@@ -68,7 +66,6 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        shopListTableView.isHidden = true
         routeListApiCall()
     }
     
@@ -162,6 +159,34 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
             self.shopListTableView.isHidden = true
         }
     }
+    
+    
+    @IBAction func logOutBtnAction(_ sender: Any) {
+            startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
+            let url = "http://globemobility.in/admin/Mobile/OUT_from_shop"
+        let Parameter = ["shopid": "1","latitude":latitudeValue,"longitude":longitudeValue]
+            NetworkHelper.shareWithPars(parameter: Parameter ,method: .post, url: url, completion: { (result) in
+                self.stopAnimating()
+                let response = result as NSDictionary
+                let resultValue = response["Result"] as! String
+                if resultValue == "True" {
+                    let loginVc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
+                    self.navigationController?.pushViewController(loginVc!, animated: true)
+
+                } else {
+                    self.showAlert(message: response["Message"] as! String, Title: "Alert")
+                }
+            }, completionError:  { (error) in
+                self.stopAnimating()
+                let errorResponse = error as NSDictionary
+                if errorResponse.value(forKey: "errorType") as! NSNumber == 1 {
+                    self.present(AppUtility.showInternetErrorMessage(title: "", errorMessage: kNoInterNetMessage, completion: {
+                    }), animated: true, completion: nil)
+                }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
+                    self.showAlert(message: kSomethingGetWrong, Title: "Error")
+                }
+            })
+    }
 }
 extension ShopListViewController : UITableViewDataSource,UITableViewDelegate,shopInBtnTableViewCellDelegate {
     func shopIn(selectedIndexPath: IndexPath,buttonName: String) {
@@ -172,14 +197,13 @@ extension ShopListViewController : UITableViewDataSource,UITableViewDelegate,sho
                 mobListVc!.lat = shopListArray[selectedIndexPath.row].lat
                 mobListVc!.long = shopListArray[selectedIndexPath.row].long
                 self.navigationController?.pushViewController(mobListVc!, animated: true)
-      //      }
-//        } else if buttonName == "report" {
-//            let repListVc = storyboard?.instantiateViewController(withIdentifier: "ReportListViewController") as? ReportListViewController
-//            repListVc!.shopId = shopListArray[selectedIndexPath.row].shopID
-//            self.navigationController?.pushViewController(repListVc!, animated: true)
-//        }
+        } else if buttonName == "report" {
+            let repListVc = storyboard?.instantiateViewController(withIdentifier: "ReportListViewController") as? ReportListViewController
+            repListVc!.shopid = shopListArray[selectedIndexPath.row].shopID
+            self.navigationController?.pushViewController(repListVc!, animated: true)
+        }
     }
-    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return shopListArray.count
     }

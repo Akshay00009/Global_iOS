@@ -12,8 +12,6 @@ class ReportListViewController: UIViewController,NVActivityIndicatorViewable,UIT
     
     var shopid = ""
     var reportListArray = [ReportTableViewCellCellModel]()
-    
-    
     @IBOutlet weak var reporttableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +30,14 @@ class ReportListViewController: UIViewController,NVActivityIndicatorViewable,UIT
     }
     
     func  reportListApi() {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let result = formatter.string(from: date)
+
         startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
         let url = "http://globemobility.in/admin/Mobile/todays_shop_po"
-        let Parameter: [String : AnyObject] = ["shopid": shopid as AnyObject,]
+        let Parameter: [String : AnyObject] = ["shopid": shopid as AnyObject,"": result as AnyObject]
         NetworkHelper.shareWithPars(parameter: Parameter as NSDictionary,method: .post, url: url, completion: { (result) in
             self.stopAnimating()
             let response = result as NSDictionary
@@ -72,12 +75,17 @@ class ReportListViewController: UIViewController,NVActivityIndicatorViewable,UIT
         alertController.addAction(retryAction)
         self.present(alertController, animated: true, completion: nil)
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return reportListArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        let cell: ReportTableViewCell = reporttableView.dequeueReusableCell(withIdentifier: "ReportTableViewCell", for: indexPath) as! ReportTableViewCell
+        let repdict = reportListArray[indexPath.row]
+        cell.setCell(viewModel : repdict , indexPath : indexPath)
+        return cell
+
     }
 
     /*

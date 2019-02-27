@@ -56,10 +56,10 @@ public class GBTextField: UITextField {
     }
     
     @IBInspectable
-    public var selectedTitleColor: UIColor = .blue
+    public var selectedTitleColor: UIColor = UIColor(red: 42.0/255.0, green: 152.0/255.0, blue: 142.0/255.0, alpha: 0.8)
     
     @IBInspectable
-    public var selectedLineColor: UIColor = .blue
+    public var selectedLineColor: UIColor = UIColor(red: 42.0/255.0, green: 152.0/255.0, blue: 142.0/255.0, alpha: 0.8)
     
     @IBInspectable
     public var errorColor: UIColor = .red{

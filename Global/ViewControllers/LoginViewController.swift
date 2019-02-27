@@ -26,6 +26,9 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,NVActivity
         super.viewDidLoad()
         passwordTxtField.delegate = self
         usernameTextField.delegate = self
+        usernameTextField.tintColor = UIColor(red: 42.0/255.0, green: 152.0/255.0, blue: 142.0/255.0, alpha: 0.8)
+        passwordTxtField.tintColor = UIColor(red: 42.0/255.0, green: 152.0/255.0, blue: 142.0/255.0, alpha: 0.8)
+
         passwordTxtField.lineColor = .black
         passwordTxtField.titleLabelColor = .black
         passwordTxtField.lineHeight = 1
@@ -38,7 +41,7 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,NVActivity
         locationManager.requestAlwaysAuthorization()
         
         // For use when the app is open
-        //locationManager.requestWhenInUseAuthorization()
+        //loc/Users/akshay.avati/Documents/Global_iOS/Global/Global/Base.lproj/Main.storyboard Fixed width constraints may cause clipping.ationManager.requestWhenInUseAuthorization()
         
         // If location services is enabled get the users location
         if CLLocationManager.locationServicesEnabled() {
@@ -68,6 +71,11 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,NVActivity
     login()
     }
     
+    @IBAction func forgotPassBtnAction(_ sender: Any) {
+        let forgotVc = self.storyboard?.instantiateViewController(withIdentifier: "ForgetPasswordViewController") as? ForgetPasswordViewController
+        self.navigationController?.pushViewController(forgotVc!, animated: true)
+    }
+    
     func valiadtion() -> Bool {
         if passwordTxtField.text == "" ||  usernameTextField.text == "" {
             self.showAlert(message: "Please Enter Username and Password", Title: "Alert")
@@ -79,7 +87,7 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,NVActivity
     func login() {
         if valiadtion() {
             startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
-            let url = "http://globemobility.in/admin/Mobile/checklogin"//"http://globemobility.in/admin/Mobile/checklogin?userid=\(String(describing: usernameTextField.text!))&password=\(String(describing: passwordTxtField.text!))&latitude=\(longitudeValue)&longitude=\(latitudeValue)"
+            let url = "http://globemobility.in/admin/Mobile/checklogin"
             let Parameter: [String : AnyObject] = ["username": usernameTextField.text! as AnyObject,"password": passwordTxtField.text! as AnyObject]
             NetworkHelper.shareWithPars(parameter: Parameter as NSDictionary,method: .post, url: url, completion: { (result) in
                 self.stopAnimating()
@@ -91,7 +99,7 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,NVActivity
                     let userid = dict["bms_user_id"] as? String
                     let userName = dict["bms_user_name"] as? String
                     UserDefaults.standard.set(userName, forKey: kuserName)
-                    UserDefaults.standard.set(userName, forKey: kuserId)
+                    UserDefaults.standard.set(userid, forKey: kuserId)
                     let shopListVc = self.storyboard?.instantiateViewController(withIdentifier: "ShopListViewController") as? ShopListViewController
                     shopListVc?.userId = userid!
                     self.navigationController?.pushViewController(shopListVc!, animated: true)

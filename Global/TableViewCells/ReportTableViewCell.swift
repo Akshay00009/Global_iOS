@@ -10,11 +10,19 @@ import UIKit
 import SwiftyJSON
 
 class ReportTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var brandName: UILabel!
+    
+    @IBOutlet weak var purchaseOrder: UILabel!
+    @IBOutlet weak var stockLevel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    func  setCell(viewModel : ReportTableViewCellCellModel, indexPath:IndexPath) {
+        
+    }
+
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

@@ -12,15 +12,76 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReportTableViewCell" rowHeight="118" id="KGk-i7-Jjw" customClass="ReportTableViewCell" customModule="Global" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="547" height="118"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReportTableViewCell" rowHeight="113" id="KGk-i7-Jjw" customClass="ReportTableViewCell" customModule="Global" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="547" height="113"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="547" height="117.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="547" height="112.5"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGI-Np-7zc">
+                        <rect key="frame" x="20" y="10" width="143" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="143" id="XXK-wV-j2o"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purchase Order" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Asb-T6-Ynv">
+                        <rect key="frame" x="20" y="80" width="143" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stock Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JXq-iy-jwX">
+                        <rect key="frame" x="20" y="51" width="143" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yUl-HP-fgn">
+                        <rect key="frame" x="188" y="80" width="147" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="147" id="rP6-3X-Epu"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yXg-V6-upf">
+                        <rect key="frame" x="188" y="51" width="147" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="147" id="yBA-WM-XIx"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="yXg-V6-upf" firstAttribute="leading" secondItem="JXq-iy-jwX" secondAttribute="trailing" constant="25" id="44t-lD-bCK"/>
+                    <constraint firstItem="JXq-iy-jwX" firstAttribute="leading" secondItem="QGI-Np-7zc" secondAttribute="leading" id="4c9-TH-yT4"/>
+                    <constraint firstItem="Asb-T6-Ynv" firstAttribute="leading" secondItem="JXq-iy-jwX" secondAttribute="leading" id="7Ad-BB-r49"/>
+                    <constraint firstItem="QGI-Np-7zc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="CYE-Rf-g3Q"/>
+                    <constraint firstItem="JXq-iy-jwX" firstAttribute="top" secondItem="QGI-Np-7zc" secondAttribute="bottom" constant="20" id="KvK-IF-jcK"/>
+                    <constraint firstAttribute="bottom" secondItem="Asb-T6-Ynv" secondAttribute="bottom" constant="11.5" id="UqJ-S0-SOl"/>
+                    <constraint firstItem="QGI-Np-7zc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Xua-1h-IKU"/>
+                    <constraint firstItem="Asb-T6-Ynv" firstAttribute="width" secondItem="JXq-iy-jwX" secondAttribute="width" id="d61-oP-PZm"/>
+                    <constraint firstItem="JXq-iy-jwX" firstAttribute="width" secondItem="QGI-Np-7zc" secondAttribute="width" id="lpa-Qy-99T"/>
+                    <constraint firstItem="yUl-HP-fgn" firstAttribute="leading" secondItem="yXg-V6-upf" secondAttribute="leading" id="n2G-pL-ftZ"/>
+                    <constraint firstItem="yUl-HP-fgn" firstAttribute="centerY" secondItem="Asb-T6-Ynv" secondAttribute="centerY" id="nNE-Au-8FD"/>
+                    <constraint firstItem="yXg-V6-upf" firstAttribute="centerY" secondItem="JXq-iy-jwX" secondAttribute="centerY" id="xzR-hj-QlP"/>
+                    <constraint firstItem="Asb-T6-Ynv" firstAttribute="top" secondItem="JXq-iy-jwX" secondAttribute="bottom" constant="8" id="zfP-Uh-kFi"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="52" y="99"/>
+            <connections>
+                <outlet property="brandName" destination="QGI-Np-7zc" id="kDl-N3-wiX"/>
+                <outlet property="purchaseOrder" destination="Asb-T6-Ynv" id="ChK-PR-wHr"/>
+                <outlet property="stockLevel" destination="JXq-iy-jwX" id="v73-B4-t2v"/>
+            </connections>
+            <point key="canvasLocation" x="52" y="96.7016491754123"/>
         </tableViewCell>
     </objects>
 </document>

@@ -8,7 +8,7 @@
 
 import UIKit
 import NVActivityIndicatorView
-
+import SwiftyJSON
 class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewable {
     
 
@@ -18,6 +18,7 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
     var lat = ""
     var long = ""
     var updateArray = [[String:String]]()
+    var data = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         print(shopId)
@@ -82,7 +83,15 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
     func updateStock() {
         startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
         let url = "http://globemobility.in/admin/Mobile/updateStock"
-        let Parameter = updateArray 
+//        let paramsJSON = JSON(updateArray)
+//        let paramsString = paramsJSON.rawString(String.Encoding.utf8, options: JSONSerialization.WritingOptions.prettyPrinted)!
+       var arr = [String]()
+        for dict in updateArray {
+            data = getPostString(params: dict)
+            arr.append(data)
+        }
+        print(arr)
+        let Parameter = arr
         NetworkHelper.shareWithPars(parameter: Parameter ,method: .post, url: url, completion: { (result) in
             self.stopAnimating()
             let response = result as NSDictionary
@@ -104,6 +113,7 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
         })
     }
     
+    
     func  showAlert(message: String = "", Title: String = "") {
         let alertController = UIAlertController(title: Title, message: message, preferredStyle: UIAlertController.Style.alert)
         let retryAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {
@@ -124,24 +134,50 @@ extension MobileBrandListViewController : UITableViewDelegate,UITableViewDataSou
         let cell: MobileBrandTableViewCell = mobileListTableView.dequeueReusableCell(withIdentifier: "MobileBrandTableViewCell", for: indexPath) as! MobileBrandTableViewCell
         cell.delegateObject = self
         let mobdict = mobileBrandArray[indexPath.row]
-        let cnt = Int(cell.countTxtField.text!)
         cell.setCell(viewModel : mobdict , indexPath : indexPath)
         return cell
     }
     func showCountText(count: String, indexPath: IndexPath,show : Bool) {
         if show {
-            let param = ["shopid": mobileBrandArray[indexPath.row].stock,
-                         "brandId": mobileBrandArray[indexPath.row].brandID,
-                         "shortqua": mobileBrandArray[indexPath.row].stock,
-                         "lattude": mobileBrandArray[indexPath.row].lat,
-                         "longitude": mobileBrandArray[indexPath.row].long,
-                         "username": UserDefaults.standard.value(forKey: kuserName),
-                         "userid": UserDefaults.standard.value(forKey: kuserId)]
-            updateArray.append(param as! [String : String])
+            let brandID = mobileBrandArray[indexPath.row].brandID
+            let arr =  updateArray.filter({$0["brandId"] == brandID})
+            print(arr)
+            if let index = updateArray.index(where: {$0["brandId"] == brandID}) {
+                updateArray[index]["shortqua"] = count
+                mobileBrandArray[indexPath.row].stockQuantity = count
+            } else {
+                let param = ["shopid": mobileBrandArray[indexPath.row].sID,
+                             "brandId": mobileBrandArray[indexPath.row].brandID,
+                             "shortqua": count,
+                             "lattude": mobileBrandArray[indexPath.row].lat,
+                             "longitude": mobileBrandArray[indexPath.row].long,
+                             "username": UserDefaults.standard.value(forKey: kuserName),
+                             "userid": UserDefaults.standard.value(forKey: kuserId)]
+                updateArray.append(param as! [String : String])
+                print(data )
+                mobileBrandArray[indexPath.row].stockQuantity = count
+            }
             print(updateArray)
         } else {
+            let brandID = mobileBrandArray[indexPath.row].brandID
+            if updateArray.count != 0 {
+                if let indexp = updateArray.index(where: {$0["brandId"] == brandID}){
+                    updateArray.remove(at: indexp)
+                    mobileBrandArray[indexPath.row].stockQuantity = ""
+                    mobileListTableView.reloadData()
+                }
+            }
             self.showAlert(message: "Please Enter text below \([mobileBrandArray[indexPath.row].stock])", Title: "Alert")
         }
-        
     }
+    func getPostString(params:[String:Any]) -> String
+    {
+        var data = [String]()
+        for(key, value) in params
+        {
+            data.append(key + " = \(value)")
+        }
+        return data.map { String($0) }.joined(separator: ",")
+    }
+    
 }

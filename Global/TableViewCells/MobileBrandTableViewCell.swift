@@ -28,33 +28,30 @@ class MobileBrandTableViewCell: UITableViewCell,UITextFieldDelegate {
 
     func  setCell(viewModel : MobileBrandTableViewCellModel, indexPath:IndexPath) {
         countTxtField.delegate = self
+        countTxtField.text = viewModel.stockQuantity
         stockLevel.text = viewModel.stock
         brandName.text = viewModel.brand
         selectedIndexPath = indexPath
     }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.resignFirstResponder()
-    }
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentString: NSString = textField.text! as NSString
         let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
-
-        if Int(newString as String)! > Int(stockLevel.text!) ?? 0 {
-            textField.text = ""
-            delegateObject?.showCountText(count: newString as String, indexPath: selectedIndexPath, show: false)
-        } else {
-            delegateObject?.showCountText(count: newString as String, indexPath: selectedIndexPath, show: true)
-        }
-        return true
-    }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+            if Int(newString as String) ?? 0 > Int(stockLevel.text!) ?? 0 {
+                textField.text = ""
+                delegateObject?.showCountText(count: newString as String, indexPath: selectedIndexPath, show: false)
+                return true
+            } else {
+                delegateObject?.showCountText(count: newString as String, indexPath: selectedIndexPath, show: true)
+                return true
+            }
         return false
     }
 
@@ -63,8 +60,10 @@ class MobileBrandTableViewCell: UITableViewCell,UITextFieldDelegate {
 class MobileBrandTableViewCellModel {
     let sID, brandID, code, lat: String
     let long, brand, stock: String
+    var stockQuantity : String
 
-    init(mobListDict : NSDictionary) {
+    init(mobListDict : NSDictionary,stockQuant : String = "") {
+        self.stockQuantity = stockQuant
         self.sID = mobListDict["s_id"] as? String  == nil ? "" :  mobListDict["s_id"] as! String
         self.brandID = mobListDict["brand_id"] as? String  == nil ? "" :  mobListDict["brand_id"] as! String
         self.code = mobListDict["code"] as? String  == nil ? "" :  mobListDict["code"] as! String
