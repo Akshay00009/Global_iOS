@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Global/ViewControllers/MobileBrandListViewController.swift"
-            timestampString = "572952283.998366"
+            filePath = "Global/TableViewCells/MobileBrandTableViewCell.swift"
+            timestampString = "573039963.665693"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "updateStock()"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "textField(_:shouldChangeCharactersIn:replacementString:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Global/ViewControllers/MobileBrandListViewController.swift"
-            timestampString = "572952283.998494"
+            filePath = "Global/New Group/NetworkHelper.swift"
+            timestampString = "573046376.525613"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "updateStock()"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "shareWithPars(parameter:method:url:completion:completionError:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Global/New Group/NetworkHelper.swift"
+            timestampString = "573046376.525805"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "shareWithPars(parameter:method:url:completion:completionError:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

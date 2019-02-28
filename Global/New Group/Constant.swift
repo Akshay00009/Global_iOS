@@ -5,6 +5,7 @@ import UIKit
 let kNoInterNetMessage = "No Internet Connection"
 let kSomethingGetWrong = "Something Went Wrong"
 let KLoginFailed = "Failed to Login."
+let kNotInShopRange = "You are away from shop loaction."
 let kActivityIndicatorSize = CGSize(width: 50, height: 50)
 let kLoadingMessageForHud  = "Loading..."
 let kActivityIndicatorNumber = 6
@@ -32,6 +33,17 @@ open class AppUtility {
         alertController.addAction(retryAction)
         return alertController
     }
+    
+    static func addLeftImageView(on textField : UITextField , for imageName : String ) {
+        textField.leftViewMode = UITextField.ViewMode.always
+        let imageView = UIImageView(frame: CGRect(x: 1.0, y: -10, width: 16, height: 16))
+        let image = UIImage(named: imageName)
+        imageView.image = image
+        textField.leftView = imageView
+        // To make TextField bordercolor same
+       // textField.layer.borderColor = kBorderColor
+    }
+
 
 }
 

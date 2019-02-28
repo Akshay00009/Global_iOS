@@ -16,7 +16,6 @@ public class NetworkHelper : UIViewController {
             completionError(errorDist as [String : Any])
             break
         case .online(.wwan),.online(.wiFi):
-            
            let headers: NSMutableDictionary = self.headerDictionary()
            Alamofire.request(url, method: method, parameters: parameter as? Parameters, encoding: URLEncoding.default, headers: nil).responseJSON { response in
                     if response.result.isSuccess {
@@ -33,7 +32,6 @@ public class NetworkHelper : UIViewController {
                         }
                     } else {
                         NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
-            
                         let errorDist = ["errorType":3, "errorValue": kSomethingGetWrong] as [String : Any]
                         completionError(errorDist as [String : Any])
                     }

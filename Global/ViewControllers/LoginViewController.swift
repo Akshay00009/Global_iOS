@@ -24,6 +24,10 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,NVActivity
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+//        AppUtility.addLeftImageView(on: usernameTextField, for: "ic_user")
+//        AppUtility.addLeftImageView(on: passwordTxtField, for: "ic_password")
+//
         passwordTxtField.delegate = self
         usernameTextField.delegate = self
         usernameTextField.tintColor = UIColor(red: 42.0/255.0, green: 152.0/255.0, blue: 142.0/255.0, alpha: 0.8)
@@ -111,11 +115,10 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,NVActivity
                 self.stopAnimating()
                 let errorResponse = error as NSDictionary
                 if errorResponse.value(forKey: "errorType") as! NSNumber == 1 {
-                    self.dismiss(animated: false, completion: {
-                        self.showAlert(message: kNoInterNetMessage, Title: KLoginFailed )
-                    })
+                    self.present(AppUtility.showInternetErrorMessage(title: "", errorMessage: kNoInterNetMessage, completion: {
+                    }), animated: true, completion: nil)
                 }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
-                    self.showAlert(message: kSomethingGetWrong, Title: "Error")
+                    self.showAlert(message: kSomethingGetWrong, Title: "Alert")
                 }
             })
         }

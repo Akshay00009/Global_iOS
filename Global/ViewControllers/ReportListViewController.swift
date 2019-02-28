@@ -17,6 +17,8 @@ class ReportListViewController: UIViewController,NVActivityIndicatorViewable,UIT
         super.viewDidLoad()
         reporttableView.delegate = self
         reporttableView.dataSource = self
+        self.reporttableView.register(UINib(nibName: "ReportTableViewCell", bundle: nil), forCellReuseIdentifier: "ReportTableViewCell")
+
         // Do any additional setup after loading the view.
     }
     
@@ -37,7 +39,7 @@ class ReportListViewController: UIViewController,NVActivityIndicatorViewable,UIT
 
         startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
         let url = "http://globemobility.in/admin/Mobile/todays_shop_po"
-        let Parameter: [String : AnyObject] = ["shopid": shopid as AnyObject,"": result as AnyObject]
+        let Parameter: [String : AnyObject] = ["shopid": shopid as AnyObject,"date": result as AnyObject]
         NetworkHelper.shareWithPars(parameter: Parameter as NSDictionary,method: .post, url: url, completion: { (result) in
             self.stopAnimating()
             let response = result as NSDictionary
@@ -56,12 +58,13 @@ class ReportListViewController: UIViewController,NVActivityIndicatorViewable,UIT
             }
         }, completionError:  { (error) in
             self.stopAnimating()
+            self.reporttableView.isHidden = true
             let errorResponse = error as NSDictionary
             if errorResponse.value(forKey: "errorType") as! NSNumber == 1 {
                 self.present(AppUtility.showInternetErrorMessage(title: "", errorMessage: kNoInterNetMessage, completion: {
                 }), animated: true, completion: nil)
             }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
-                self.showAlert(message: kSomethingGetWrong, Title: "Error")
+                self.showAlert(message: kSomethingGetWrong, Title: "Alert")
             }
         })
     }

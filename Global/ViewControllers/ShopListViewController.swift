@@ -50,10 +50,10 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
-            let lat = location.coordinate.longitude
-            let long = location.coordinate.latitude
-            let latValue = Double(String(format: "%.7f", lat))
-            let longValue = Double(String(format: "%.7f", long))
+            let long = location.coordinate.longitude
+            let lat = location.coordinate.latitude
+            latitudeValue  = (String(format: "%.7f", lat))
+            longitudeValue = (String(format: "%.7f", long))
         }
     }
     
@@ -96,7 +96,7 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
                     self.routeListApiCall()
                 }), animated: true, completion: nil)
             }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
-                self.showAlert(message: kSomethingGetWrong, Title: "Error")
+                self.showAlert(message: kSomethingGetWrong, Title: "Alert")
             }
         })
         
@@ -132,7 +132,7 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
                     self.shopListApiCall(routeId: routeId)
                 }), animated: true, completion: nil)
             }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
-                self.showAlert(message: kSomethingGetWrong, Title: "Error")
+                self.showAlert(message: kSomethingGetWrong, Title: "Alert")
             }
         })
         
@@ -160,6 +160,9 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
         }
     }
     
+    @IBAction func openExcelBtn(_ sender: Any) {
+        
+    }
     
     @IBAction func logOutBtnAction(_ sender: Any) {
             startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
@@ -183,7 +186,7 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
                     self.present(AppUtility.showInternetErrorMessage(title: "", errorMessage: kNoInterNetMessage, completion: {
                     }), animated: true, completion: nil)
                 }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
-                    self.showAlert(message: kSomethingGetWrong, Title: "Error")
+                    self.showAlert(message: kSomethingGetWrong, Title: "Alert")
                 }
             })
     }
@@ -191,12 +194,15 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
 extension ShopListViewController : UITableViewDataSource,UITableViewDelegate,shopInBtnTableViewCellDelegate {
     func shopIn(selectedIndexPath: IndexPath,buttonName: String) {
         if buttonName == "in" {
-//            if  shopListArray[selectedIndexPath.row].lat == latitudeValue &&  shopListArray[selectedIndexPath.row].long == longitudeValue {
+            if  shopListArray[selectedIndexPath.row].lat == latitudeValue &&  shopListArray[selectedIndexPath.row].long == longitudeValue {
                 let mobListVc = storyboard?.instantiateViewController(withIdentifier: "MobileBrandListViewController") as? MobileBrandListViewController
                 mobListVc!.shopId = shopListArray[selectedIndexPath.row].shopID
                 mobListVc!.lat = shopListArray[selectedIndexPath.row].lat
                 mobListVc!.long = shopListArray[selectedIndexPath.row].long
                 self.navigationController?.pushViewController(mobListVc!, animated: true)
+        } else {
+            self.showAlert(message: kNotInShopRange, Title: "Alert")
+       }
         } else if buttonName == "report" {
             let repListVc = storyboard?.instantiateViewController(withIdentifier: "ReportListViewController") as? ReportListViewController
             repListVc!.shopid = shopListArray[selectedIndexPath.row].shopID
@@ -220,12 +226,6 @@ extension ShopListViewController : UITableViewDataSource,UITableViewDelegate,sho
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//       let addressFrame = estimateFrameForText(text: shopListArray[indexPath.row].address)
-//       let emailFrame = estimateFrameForText(text: shopListArray[indexPath.row].email)
-//       let ownernameFrame = estimateFrameForText(text: shopListArray[indexPath.row].ownername)
-//        let mobFrame = estimateFrameForText(text: shopListArray[indexPath.row].mob)
-//
-//        let height = 30 + emailFrame.height + addressFrame.height + ownernameFrame.height + mobFrame.height
         return 158//height
 
     }

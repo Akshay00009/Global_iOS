@@ -61,7 +61,7 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
                 self.present(AppUtility.showInternetErrorMessage(title: "", errorMessage: kNoInterNetMessage, completion: {
                 }), animated: true, completion: nil)
             }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
-                self.showAlert(message: kSomethingGetWrong, Title: "Error")
+                self.showAlert(message: kSomethingGetWrong, Title: "Alert")
             }
         })
     }
@@ -85,13 +85,21 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
         let url = "http://globemobility.in/admin/Mobile/updateStock"
 //        let paramsJSON = JSON(updateArray)
 //        let paramsString = paramsJSON.rawString(String.Encoding.utf8, options: JSONSerialization.WritingOptions.prettyPrinted)!
-       var arr = [String]()
+        var brandArr = [String]()
+        var stockQuant = [String]()
         for dict in updateArray {
-            data = getPostString(params: dict)
-            arr.append(data)
+            let dic =  dict as [String:String]
+//            data = getPostString(params: dict)
+            brandArr.append(dic["brandId"] ?? "")
+            stockQuant.append(dic["shortqua"] ?? "")
         }
-        print(arr)
-        let Parameter = arr
+        print(brandArr)
+        let Parameter : [String : AnyObject] = ["brandId" : brandArr as NSArray,"shortqua" : stockQuant as NSArray,
+                         "shopid": mobileBrandArray[0].sID as AnyObject,
+                         "lattude": mobileBrandArray[0].lat as AnyObject ,
+                         "longitude": mobileBrandArray[0].long as AnyObject,
+                         "username": UserDefaults.standard.value(forKey: kuserName) as AnyObject,
+                         "userid": UserDefaults.standard.value(forKey: kuserId) as AnyObject]
         NetworkHelper.shareWithPars(parameter: Parameter ,method: .post, url: url, completion: { (result) in
             self.stopAnimating()
             let response = result as NSDictionary
@@ -108,7 +116,7 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
                 self.present(AppUtility.showInternetErrorMessage(title: "", errorMessage: kNoInterNetMessage, completion: {
                 }), animated: true, completion: nil)
             }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
-                self.showAlert(message: kSomethingGetWrong, Title: "Error")
+                self.showAlert(message: kSomethingGetWrong, Title: "Alert")
             }
         })
     }
@@ -137,18 +145,25 @@ extension MobileBrandListViewController : UITableViewDelegate,UITableViewDataSou
         cell.setCell(viewModel : mobdict , indexPath : indexPath)
         return cell
     }
+    
     func showCountText(count: String, indexPath: IndexPath,show : Bool) {
         if show {
+            var cnt : Int = 0
             let brandID = mobileBrandArray[indexPath.row].brandID
             let arr =  updateArray.filter({$0["brandId"] == brandID})
             print(arr)
+            let stock = Int(mobileBrandArray[indexPath.row].stock)
+            let cou = Int(count)
+            if count != "" {
+                cnt =  stock! - cou!
+            }
             if let index = updateArray.index(where: {$0["brandId"] == brandID}) {
-                updateArray[index]["shortqua"] = count
+                updateArray[index]["shortqua"] = String(cnt)
                 mobileBrandArray[indexPath.row].stockQuantity = count
             } else {
                 let param = ["shopid": mobileBrandArray[indexPath.row].sID,
                              "brandId": mobileBrandArray[indexPath.row].brandID,
-                             "shortqua": count,
+                             "shortqua": String(cnt),
                              "lattude": mobileBrandArray[indexPath.row].lat,
                              "longitude": mobileBrandArray[indexPath.row].long,
                              "username": UserDefaults.standard.value(forKey: kuserName),
