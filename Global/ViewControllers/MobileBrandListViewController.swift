@@ -15,56 +15,52 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
     @IBOutlet weak var mobileListTableView: UITableView!
     var mobileBrandArray = [MobileBrandTableViewCellModel]()
     var shopId = ""
-    var lat = ""
-    var long = ""
     var updateArray = [[String:String]]()
     var data = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(shopId)
         mobileListTableView.delegate = self
         mobileListTableView.dataSource = self
-        
         self.mobileListTableView.register(UINib(nibName: "MobileBrandTableViewCell", bundle: nil), forCellReuseIdentifier: "MobileBrandTableViewCell")
 
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         mobileListTableView.isHidden = true
-        getBranndListApi()
+//        getBranndListApi()
     }
     
-    func getBranndListApi() {
-        startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
-        let url = "http://globemobility.in/admin/Mobile/getBrandList"
-        let Parameter: [String : AnyObject] = ["shopid": shopId as AnyObject,"latitude": lat as AnyObject,"longitude": long as AnyObject,]
-        NetworkHelper.shareWithPars(parameter: Parameter as NSDictionary,method: .post, url: url, completion: { (result) in
-            self.stopAnimating()
-            let response = result as NSDictionary
-            let resultValue = response["Result"] as! String
-            if resultValue == "True" {
-                self.mobileBrandArray.removeAll()
-                let dataArray : NSArray = response["data"] as! NSArray
-                for dict in dataArray {
-                    self.mobileBrandArray.append(MobileBrandTableViewCellModel(mobListDict: dict as! NSDictionary))
-                }
-                self.mobileListTableView.isHidden = false
-                self.mobileListTableView.reloadData()
-            } else {
-                self.mobileListTableView.isHidden = true
-                self.showAlert(message: response["Message"] as! String, Title: "Alert")
-            }
-        }, completionError:  { (error) in
-            self.stopAnimating()
-            let errorResponse = error as NSDictionary
-            if errorResponse.value(forKey: "errorType") as! NSNumber == 1 {
-                self.present(AppUtility.showInternetErrorMessage(title: "", errorMessage: kNoInterNetMessage, completion: {
-                }), animated: true, completion: nil)
-            }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
-                self.showAlert(message: kSomethingGetWrong, Title: "Alert")
-            }
-        })
-    }
+//    func getBranndListApi() {
+//        startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
+//        let url = "http://globemobility.in/admin/Mobile/getBrandList"
+//        let Parameter: [String : AnyObject] = ["shopid": shopId as AnyObject,"latitude": lat as AnyObject,"longitude": long as AnyObject,]
+//        NetworkHelper.shareWithPars(parameter: Parameter as NSDictionary,method: .post, url: url, completion: { (result) in
+//            self.stopAnimating()
+//            let response = result as NSDictionary
+//            let resultValue = response["Result"] as! String
+//            if resultValue == "True" {
+//                self.mobileBrandArray.removeAll()
+//                let dataArray : NSArray = response["data"] as! NSArray
+//                for dict in dataArray {
+//                    self.mobileBrandArray.append(MobileBrandTableViewCellModel(mobListDict: dict as! NSDictionary))
+//                }
+//                self.mobileListTableView.isHidden = false
+//                self.mobileListTableView.reloadData()
+//            } else {
+//                self.mobileListTableView.isHidden = true
+//                self.showAlert(message: response["Message"] as! String, Title: "Alert")
+//            }
+//        }, completionError:  { (error) in
+//            self.stopAnimating()
+//            let errorResponse = error as NSDictionary
+//            if errorResponse.value(forKey: "errorType") as! NSNumber == 1 {
+//                self.present(AppUtility.showInternetErrorMessage(title: "", errorMessage: kNoInterNetMessage, completion: {
+//                }), animated: true, completion: nil)
+//            }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
+//                self.showAlert(message: kSomethingGetWrong, Title: "Alert")
+//            }
+//        })
+//    }
 
     
     @IBAction func updateStockAction(_ sender: Any) {

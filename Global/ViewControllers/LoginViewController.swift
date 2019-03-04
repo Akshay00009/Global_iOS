@@ -24,10 +24,6 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,NVActivity
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        AppUtility.addLeftImageView(on: usernameTextField, for: "ic_user")
-//        AppUtility.addLeftImageView(on: passwordTxtField, for: "ic_password")
-//
         passwordTxtField.delegate = self
         usernameTextField.delegate = self
         usernameTextField.tintColor = UIColor(red: 42.0/255.0, green: 152.0/255.0, blue: 142.0/255.0, alpha: 0.8)

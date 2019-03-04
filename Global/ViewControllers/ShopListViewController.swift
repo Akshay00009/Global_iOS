@@ -16,6 +16,8 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
     @IBOutlet weak var bcDropDownBtn: BCDropDownButton!
     @IBOutlet weak var shopListTableView: UITableView!
     var shopListArray = [ShopListTableViewCellModel]()
+    var brandArray = [MobileBrandTableViewCellModel]()
+
     var routeListArray = [AnyObject]()
     var userId = ""
     var longitudeValue = ""
@@ -194,15 +196,7 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
 extension ShopListViewController : UITableViewDataSource,UITableViewDelegate,shopInBtnTableViewCellDelegate {
     func shopIn(selectedIndexPath: IndexPath,buttonName: String) {
         if buttonName == "in" {
-            if  shopListArray[selectedIndexPath.row].lat == latitudeValue &&  shopListArray[selectedIndexPath.row].long == longitudeValue {
-                let mobListVc = storyboard?.instantiateViewController(withIdentifier: "MobileBrandListViewController") as? MobileBrandListViewController
-                mobListVc!.shopId = shopListArray[selectedIndexPath.row].shopID
-                mobListVc!.lat = shopListArray[selectedIndexPath.row].lat
-                mobListVc!.long = shopListArray[selectedIndexPath.row].long
-                self.navigationController?.pushViewController(mobListVc!, animated: true)
-        } else {
-            self.showAlert(message: kNotInShopRange, Title: "Alert")
-       }
+            getBranndListApi(indexpath : selectedIndexPath)
         } else if buttonName == "report" {
             let repListVc = storyboard?.instantiateViewController(withIdentifier: "ReportListViewController") as? ReportListViewController
             repListVc!.shopid = shopListArray[selectedIndexPath.row].shopID
@@ -228,6 +222,40 @@ extension ShopListViewController : UITableViewDataSource,UITableViewDelegate,sho
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 158//height
 
+    }
+    
+    func getBranndListApi(indexpath : IndexPath) {
+        startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
+        let url = "http://globemobility.in/admin/Mobile/getBrandList"
+        let Parameter: [String : AnyObject] = ["shopid": shopListArray[indexpath.row].shopID as AnyObject,"latitude": latitudeValue as AnyObject,"longitude": longitudeValue as AnyObject,]
+        NetworkHelper.shareWithPars(parameter: Parameter as NSDictionary,method: .post, url: url, completion: { (result) in
+            self.stopAnimating()
+            let response = result as NSDictionary
+            let resultValue = response["Result"] as! String
+            if resultValue == "True" {
+                self.brandArray.removeAll()
+                let dataArray : NSArray = response["data"] as! NSArray
+                for dict in dataArray {
+                    self.brandArray.append(MobileBrandTableViewCellModel(mobListDict: dict as! NSDictionary))
+                }
+
+                let mobListVc = self.storyboard?.instantiateViewController(withIdentifier: "MobileBrandListViewController") as? MobileBrandListViewController
+                mobListVc?.mobileBrandArray =  self.brandArray
+                mobListVc?.shopId = self.brandArray[indexpath.row].sID
+                self.navigationController?.pushViewController(mobListVc!, animated: true)
+            } else {
+                self.showAlert(message: response["Message"] as! String, Title: "Alert")
+            }
+        }, completionError:  { (error) in
+            self.stopAnimating()
+            let errorResponse = error as NSDictionary
+            if errorResponse.value(forKey: "errorType") as! NSNumber == 1 {
+                self.present(AppUtility.showInternetErrorMessage(title: "", errorMessage: kNoInterNetMessage, completion: {
+                }), animated: true, completion: nil)
+            }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
+                self.showAlert(message: kSomethingGetWrong, Title: "Alert")
+            }
+        })
     }
     
     func estimateFrameForText(text: String) -> CGRect {

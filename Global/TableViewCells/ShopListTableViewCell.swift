@@ -15,6 +15,7 @@ protocol shopInBtnTableViewCellDelegate {
 
 class ShopListTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var shopName: UILabel!
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var mobileNo: UILabel!
     @IBOutlet weak var email: UILabel!
@@ -38,6 +39,7 @@ class ShopListTableViewCell: UITableViewCell {
         mobileNo.text = viewModel.mob
         email.text = viewModel.email
         ownerName.text = viewModel.ownername
+        shopName.text = viewModel.shopname
     }
 
     @IBAction func inBtnAction(_ sender: Any) {
