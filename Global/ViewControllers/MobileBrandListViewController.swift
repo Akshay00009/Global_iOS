@@ -26,6 +26,13 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
+        if mobileBrandArray.count != 0 {
+             mobileListTableView.isHidden = false
+        } else {
+            mobileListTableView.isHidden = true
+            self.showAlert(message: "There is no data records", Title: "Alert")
+        }
+
      //   mobileListTableView.isHidden = true
 //        getBranndListApi()
     }
@@ -64,7 +71,11 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
 
     
     @IBAction func updateStockAction(_ sender: Any) {
-     updateStock()
+        if mobileBrandArray.count != 0 {
+            updateStock()
+        } else {
+            self.showAlert(message: "There is no data records", Title: "Alert")
+        }
     }
     @IBAction func backBtnAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: false)
