@@ -17,15 +17,13 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
     @IBOutlet weak var shopListTableView: UITableView!
     var shopListArray = [ShopListTableViewCellModel]()
     var brandArray = [MobileBrandTableViewCellModel]()
-
     var routeListArray = [AnyObject]()
     var userId = ""
     var longitudeValue = ""
     var latitudeValue = ""
-
     var currentLocation: CLLocation! = nil
     let locationManager = CLLocationManager()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         shopListTableView.isHidden = true
@@ -33,12 +31,10 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
         shopListTableView.dataSource = self
         self.shopListTableView.register(UINib(nibName: "ShopListTableViewCell", bundle: nil), forCellReuseIdentifier: "ShopListTableViewCell")
         bcDropDownBtn.delegate = self
-        UserDefaults.standard.set("", forKey: kShopId)
+        UserDefaults.standard.set("1", forKey: kShopId)
         locationManager.requestAlwaysAuthorization()
-        
         // For use when the app is open
         //locationManager.requestWhenInUseAuthorization()
-        
         // If location services is enabled get the users location
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
@@ -46,8 +42,6 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
             locationManager.startUpdatingLocation()
             currentLocation = locationManager.location
         }
-        
-
         // Do any additional setup after loading the view.
     }
     
@@ -61,13 +55,12 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
     }
     
     // If we have been deined access give the user the option to change it
-    
     @available(iOS 4.2, *)
     public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
     {
         locationManager.startUpdatingLocation()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         routeListApiCall()
     }
@@ -168,30 +161,30 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
     }
     
     @IBAction func logOutBtnAction(_ sender: Any) {
-            startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
-            let url = "http://globemobility.in/admin/Mobile/OUT_from_shop"
-        let Parameter = ["shopid": UserDefaults.standard.value(forKey: kShopId),"latitude":latitudeValue,"longitude":longitudeValue]
-            NetworkHelper.shareWithPars(parameter: Parameter ,method: .post, url: url, completion: { (result) in
-                self.stopAnimating()
-                let response = result as NSDictionary
-                let resultValue = response["Result"] as! String
-                if resultValue == "True" {
-                    let loginVc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
-                    self.navigationController?.pushViewController(loginVc!, animated: true)
-
-                } else {
-                    self.showAlert(message: response["Message"] as! String, Title: "Alert")
-                }
-            }, completionError:  { (error) in
-                self.stopAnimating()
-                let errorResponse = error as NSDictionary
-                if errorResponse.value(forKey: "errorType") as! NSNumber == 1 {
-                    self.present(AppUtility.showInternetErrorMessage(title: "", errorMessage: kNoInterNetMessage, completion: {
-                    }), animated: true, completion: nil)
-                }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
-                    self.showAlert(message: kSomethingGetWrong, Title: "Alert")
-                }
-            })
+        startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
+        let url = "http://globemobility.in/admin/Mobile/OUT_from_shop"
+        let Parameter: [String : String] = ["shopid": UserDefaults.standard.value(forKey: kShopId) as! String,"latitude":latitudeValue,"longitude":longitudeValue]
+        NetworkHelper.shareWithPars(parameter: Parameter ,method: .post, url: url, completion: { (result) in
+            self.stopAnimating()
+            let response = result as NSDictionary
+            let resultValue = response["Result"] as! String
+            if resultValue == "True" {
+                let loginVc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
+                self.navigationController?.pushViewController(loginVc!, animated: true)
+                
+            } else {
+                self.showAlert(message: response["Message"] as! String, Title: "Alert")
+            }
+        }, completionError:  { (error) in
+            self.stopAnimating()
+            let errorResponse = error as NSDictionary
+            if errorResponse.value(forKey: "errorType") as! NSNumber == 1 {
+                self.present(AppUtility.showInternetErrorMessage(title: "", errorMessage: kNoInterNetMessage, completion: {
+                }), animated: true, completion: nil)
+            }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
+                self.showAlert(message: kSomethingGetWrong, Title: "Alert")
+            }
+        })
     }
 }
 extension ShopListViewController : UITableViewDataSource,UITableViewDelegate,shopInBtnTableViewCellDelegate {
@@ -240,7 +233,6 @@ extension ShopListViewController : UITableViewDataSource,UITableViewDelegate,sho
                 for dict in dataArray {
                     self.brandArray.append(MobileBrandTableViewCellModel(mobListDict: dict as! NSDictionary))
                 }
-
                 let mobListVc = self.storyboard?.instantiateViewController(withIdentifier: "MobileBrandListViewController") as? MobileBrandListViewController
                 mobListVc?.mobileBrandArray =  self.brandArray
                 mobListVc?.shopId = self.brandArray[indexpath.row].sID
