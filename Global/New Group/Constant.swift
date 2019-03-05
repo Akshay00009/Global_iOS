@@ -11,6 +11,7 @@ let kLoadingMessageForHud  = ""
 let kActivityIndicatorNumber = 6
 let kuserName = "UserName"
 let kuserId = "userId"
+let kShopId = "shopId"
 
 var loggedInUserID = ""
 

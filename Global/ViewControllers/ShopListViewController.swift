@@ -33,6 +33,7 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
         shopListTableView.dataSource = self
         self.shopListTableView.register(UINib(nibName: "ShopListTableViewCell", bundle: nil), forCellReuseIdentifier: "ShopListTableViewCell")
         bcDropDownBtn.delegate = self
+        UserDefaults.standard.set("", forKey: kShopId)
         locationManager.requestAlwaysAuthorization()
         
         // For use when the app is open
@@ -169,7 +170,7 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
     @IBAction func logOutBtnAction(_ sender: Any) {
             startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
             let url = "http://globemobility.in/admin/Mobile/OUT_from_shop"
-        let Parameter = ["shopid": "1","latitude":latitudeValue,"longitude":longitudeValue]
+        let Parameter = ["shopid": UserDefaults.standard.value(forKey: kShopId),"latitude":latitudeValue,"longitude":longitudeValue]
             NetworkHelper.shareWithPars(parameter: Parameter ,method: .post, url: url, completion: { (result) in
                 self.stopAnimating()
                 let response = result as NSDictionary
@@ -195,6 +196,7 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
 }
 extension ShopListViewController : UITableViewDataSource,UITableViewDelegate,shopInBtnTableViewCellDelegate {
     func shopIn(selectedIndexPath: IndexPath,buttonName: String) {
+        UserDefaults.standard.set(shopListArray[selectedIndexPath.row].shopID, forKey: kShopId)
         if buttonName == "in" {
             getBranndListApi(indexpath : selectedIndexPath)
         } else if buttonName == "report" {
