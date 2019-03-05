@@ -59,12 +59,6 @@
                                     <action selector="forgotPassBtnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DcR-fM-Qgn"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSJ-Ba-SOA">
-                                <rect key="frame" x="115" y="212" width="90.5" height="27"/>
-                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sv1-fa-F7K">
                                 <rect key="frame" x="30" y="404" width="260" height="40"/>
                                 <color key="backgroundColor" red="0.14591580629348755" green="0.57181167602539062" blue="0.77452760934829712" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -81,23 +75,29 @@
                                     <action selector="loginBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hea-gg-GDx"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginImage" translatesAutoresizingMaskIntoConstraints="NO" id="6Jw-6e-Haj">
-                                <rect key="frame" x="50" y="72" width="220" height="135"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logLogo" translatesAutoresizingMaskIntoConstraints="NO" id="6Jw-6e-Haj">
+                                <rect key="frame" x="45" y="82.5" width="230" height="90"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="220" id="2qK-3K-igF"/>
-                                    <constraint firstAttribute="height" constant="135" id="Nt4-wm-vnw"/>
+                                    <constraint firstAttribute="width" constant="230" id="2qK-3K-igF"/>
+                                    <constraint firstAttribute="height" constant="90" id="Nt4-wm-vnw"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSJ-Ba-SOA">
+                                <rect key="frame" x="81" y="209" width="170" height="29"/>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="pSJ-Ba-SOA" firstAttribute="top" secondItem="6Jw-6e-Haj" secondAttribute="bottom" constant="5" id="0HG-wO-bSa"/>
+                            <constraint firstItem="pSJ-Ba-SOA" firstAttribute="top" secondItem="6Jw-6e-Haj" secondAttribute="bottom" constant="36.5" id="0HG-wO-bSa"/>
                             <constraint firstItem="6Jw-6e-Haj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8B1-c1-CfT"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NST-bX-Crp" secondAttribute="trailing" constant="30" id="A5v-ui-cIs"/>
                             <constraint firstItem="vfL-1d-bRI" firstAttribute="height" secondItem="NST-bX-Crp" secondAttribute="height" id="CC4-Fc-wjE"/>
                             <constraint firstItem="Sv1-fa-F7K" firstAttribute="width" secondItem="vfL-1d-bRI" secondAttribute="width" id="FTf-Y0-6GK"/>
-                            <constraint firstItem="NST-bX-Crp" firstAttribute="top" secondItem="pSJ-Ba-SOA" secondAttribute="bottom" constant="25" id="Fcp-lt-lpd"/>
-                            <constraint firstItem="pSJ-Ba-SOA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Gjf-Vf-RXi"/>
+                            <constraint firstItem="NST-bX-Crp" firstAttribute="top" secondItem="pSJ-Ba-SOA" secondAttribute="bottom" constant="26" id="Fcp-lt-lpd"/>
+                            <constraint firstItem="pSJ-Ba-SOA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="6" id="Gjf-Vf-RXi"/>
                             <constraint firstItem="dPd-6d-Yly" firstAttribute="top" secondItem="Sv1-fa-F7K" secondAttribute="bottom" constant="4" id="HMD-Lf-bWw"/>
                             <constraint firstItem="vfL-1d-bRI" firstAttribute="top" secondItem="NST-bX-Crp" secondAttribute="bottom" constant="30" id="HcO-U9-yEX"/>
                             <constraint firstItem="NST-bX-Crp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="IKM-tE-D0A"/>
@@ -539,11 +539,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginImage" translatesAutoresizingMaskIntoConstraints="NO" id="0Vp-KB-WUK">
-                                <rect key="frame" x="65" y="117" width="190" height="105"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logLogo" translatesAutoresizingMaskIntoConstraints="NO" id="0Vp-KB-WUK">
+                                <rect key="frame" x="35" y="122" width="241" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="105" id="3jA-0M-qDb"/>
-                                    <constraint firstAttribute="width" constant="190" id="gS3-cz-pog"/>
+                                    <constraint firstAttribute="height" constant="100" id="3jA-0M-qDb"/>
+                                    <constraint firstAttribute="width" constant="241" id="gS3-cz-pog"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Password?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Swb-RI-sOd">
@@ -572,7 +572,7 @@
                             <constraint firstItem="iOa-2d-YFw" firstAttribute="centerX" secondItem="D2J-zu-2Oj" secondAttribute="centerX" id="jTr-dg-CnX"/>
                             <constraint firstItem="781-Af-mOH" firstAttribute="leading" secondItem="iOa-2d-YFw" secondAttribute="leading" id="nDV-SZ-h5S"/>
                             <constraint firstItem="iOa-2d-YFw" firstAttribute="leading" secondItem="g6c-qH-tw5" secondAttribute="leading" constant="20" id="nhM-7V-Wql"/>
-                            <constraint firstItem="0Vp-KB-WUK" firstAttribute="centerX" secondItem="D2J-zu-2Oj" secondAttribute="centerX" id="oNK-Xa-oqr"/>
+                            <constraint firstItem="0Vp-KB-WUK" firstAttribute="centerX" secondItem="D2J-zu-2Oj" secondAttribute="centerX" constant="-4.5" id="oNK-Xa-oqr"/>
                             <constraint firstItem="iOa-2d-YFw" firstAttribute="centerY" secondItem="D2J-zu-2Oj" secondAttribute="centerY" id="rPl-JL-why"/>
                             <constraint firstItem="iOa-2d-YFw" firstAttribute="top" secondItem="Swb-RI-sOd" secondAttribute="bottom" constant="15" id="see-fN-EnW"/>
                             <constraint firstItem="g6c-qH-tw5" firstAttribute="trailing" secondItem="iOa-2d-YFw" secondAttribute="trailing" constant="20" id="yqJ-cn-rgz"/>
@@ -592,7 +592,7 @@
         <image name="IQButtonBarArrowDown.png" width="21" height="12"/>
         <image name="IQButtonBarArrowLeft.png" width="12" height="21"/>
         <image name="ic_email" width="15" height="11"/>
-        <image name="loginImage" width="150" height="150"/>
+        <image name="logLogo" width="1021" height="442"/>
         <image name="passwordKey" width="30" height="30"/>
         <image name="userImage" width="30" height="30"/>
     </resources>
