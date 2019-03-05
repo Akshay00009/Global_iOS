@@ -26,7 +26,7 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
-        mobileListTableView.isHidden = true
+     //   mobileListTableView.isHidden = true
 //        getBranndListApi()
     }
     
