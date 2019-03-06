@@ -10,7 +10,9 @@ import UIKit
 import NVActivityIndicatorView
 class ReportListViewController: UIViewController,NVActivityIndicatorViewable,UITableViewDelegate,UITableViewDataSource {
     
+    @IBOutlet weak var shopNm: UILabel!
     var shopid = ""
+    var shopName = ""
     var reportListArray = [ReportTableViewCellCellModel]()
     @IBOutlet weak var reporttableView: UITableView!
     override func viewDidLoad() {
@@ -28,6 +30,7 @@ class ReportListViewController: UIViewController,NVActivityIndicatorViewable,UIT
     
     override func viewWillAppear(_ animated: Bool) {
         self.reporttableView.isHidden = true
+        shopNm.text = shopName
         reportListApi()
     }
     

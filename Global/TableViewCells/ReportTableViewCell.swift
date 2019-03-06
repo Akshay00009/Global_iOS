@@ -39,7 +39,7 @@ class ReportTableViewCellCellModel {
     init(reportListDict : NSDictionary) {
         self.brand = reportListDict["brand"] as? String  == nil ? "" :  reportListDict["brand"] as! String
         self.minQty = reportListDict["min_qty"] as? String  == nil ? "" :  reportListDict["min_qty"] as! String
-        self.currentQty = reportListDict["poqty"] as? String  == nil ? "" : reportListDict["poqty"] as! String
+        self.currentQty = reportListDict["current_qty"] as? String  == nil ? "" : reportListDict["current_qty"] as! String
     }
 }
 

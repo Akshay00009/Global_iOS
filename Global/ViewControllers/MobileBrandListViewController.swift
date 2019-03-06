@@ -12,9 +12,11 @@ import SwiftyJSON
 class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewable {
     
 
+    @IBOutlet weak var shopnm: UILabel!
     @IBOutlet weak var mobileListTableView: UITableView!
     var mobileBrandArray = [MobileBrandTableViewCellModel]()
     var shopId = ""
+    var shopName = ""
     var updateArray = [[String:String]]()
     var data = ""
     override func viewDidLoad() {
@@ -26,6 +28,7 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
+        shopnm.text = shopName
         if mobileBrandArray.count != 0 {
              mobileListTableView.isHidden = false
         } else {
@@ -84,6 +87,8 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
     @IBAction func chackOutBtnAction(_ sender: Any) {
         let reportListVc = self.storyboard?.instantiateViewController(withIdentifier: "ReportListViewController") as? ReportListViewController
         reportListVc?.shopid = shopId
+        reportListVc!.shopName = shopName
+
         self.navigationController?.pushViewController(reportListVc!, animated: true)
 
     }
@@ -92,16 +97,16 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
         let url = "http://globemobility.in/admin/Mobile/updateStock"
 //        let paramsJSON = JSON(updateArray)
 //        let paramsString = paramsJSON.rawString(String.Encoding.utf8, options: JSONSerialization.WritingOptions.prettyPrinted)!
-        var brandArr = [String]()
-        var stockQuant = [String]()
-        for dict in updateArray {
-            let dic =  dict as [String:String]
+        var brandArr = [Any]()
+        var stockQuant = [Any]()
+        for dict in mobileBrandArray {
+            let dic =  dict
 //            data = getPostString(params: dict)
-            brandArr.append(dic["brandId"] ?? "")
-            stockQuant.append(dic["shortqua"] ?? "")
+            brandArr.append(dic.brandID)
+            stockQuant.append(dic.stockQuantity)
         }
         print(brandArr)
-        let Parameter : [String : AnyObject] = ["brandId" : brandArr as NSArray,"shortqua" : stockQuant as NSArray,
+        let Parameter : [String : AnyObject] = ["brandId" : brandArr as AnyObject ,"shortqua" : stockQuant as AnyObject ,
                          "shopid": mobileBrandArray[0].sID as AnyObject,
                          "lattude": mobileBrandArray[0].lat as AnyObject ,
                          "longitude": mobileBrandArray[0].long as AnyObject,

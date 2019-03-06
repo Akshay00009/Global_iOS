@@ -195,6 +195,7 @@ extension ShopListViewController : UITableViewDataSource,UITableViewDelegate,sho
         } else if buttonName == "report" {
             let repListVc = storyboard?.instantiateViewController(withIdentifier: "ReportListViewController") as? ReportListViewController
             repListVc!.shopid = shopListArray[selectedIndexPath.row].shopID
+              repListVc!.shopName = shopListArray[selectedIndexPath.row].shopname
             self.navigationController?.pushViewController(repListVc!, animated: true)
         }
     }
@@ -222,7 +223,7 @@ extension ShopListViewController : UITableViewDataSource,UITableViewDelegate,sho
     func getBranndListApi(indexpath : IndexPath) {
         startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
         let url = "http://globemobility.in/admin/Mobile/getBrandList"
-        let Parameter: [String : AnyObject] = ["shopid": shopListArray[indexpath.row].shopID as AnyObject,"latitude": latitudeValue as AnyObject,"longitude": longitudeValue as AnyObject,]
+        let Parameter: [String : AnyObject] = ["shopid": shopListArray[indexpath.row].shopID as AnyObject,"latitude": "18.505810"/*latitudeValue*/ as AnyObject,"longitude": "73.824370"/*longitudeValue*/ as AnyObject,]
         NetworkHelper.shareWithPars(parameter: Parameter as NSDictionary,method: .post, url: url, completion: { (result) in
             self.stopAnimating()
             let response = result as NSDictionary
@@ -235,7 +236,8 @@ extension ShopListViewController : UITableViewDataSource,UITableViewDelegate,sho
                 }
                 let mobListVc = self.storyboard?.instantiateViewController(withIdentifier: "MobileBrandListViewController") as? MobileBrandListViewController
                 mobListVc?.mobileBrandArray =  self.brandArray
-                mobListVc?.shopId = self.brandArray[indexpath.row].sID
+                mobListVc?.shopId = self.shopListArray[indexpath.row].shopID
+                mobListVc?.shopName = self.shopListArray[indexpath.row].shopname
                 self.navigationController?.pushViewController(mobListVc!, animated: true)
             } else {
                 self.showAlert(message: response["Message"] as! String, Title: "Alert")

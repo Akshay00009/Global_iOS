@@ -28,7 +28,11 @@ class MobileBrandTableViewCell: UITableViewCell,UITextFieldDelegate {
 
     func  setCell(viewModel : MobileBrandTableViewCellModel, indexPath:IndexPath) {
         countTxtField.delegate = self
-        countTxtField.text = viewModel.stockQuantity
+        if viewModel.stockQuantity == "0" {
+             countTxtField.text = ""
+        } else {
+            countTxtField.text = viewModel.stockQuantity
+        }
         stockLevel.text = viewModel.stock
         brandName.text = viewModel.brand
         selectedIndexPath = indexPath
@@ -58,11 +62,11 @@ class MobileBrandTableViewCell: UITableViewCell,UITextFieldDelegate {
 }
 
 class MobileBrandTableViewCellModel {
-    let sID, brandID, code, lat: String
+    let sID, brandID, code, lat,shopname : String
     let long, brand, stock: String
     var stockQuantity : String
 
-    init(mobListDict : NSDictionary,stockQuant : String = "") {
+    init(mobListDict : NSDictionary,stockQuant : String = "0") {
         self.stockQuantity = stockQuant
         self.sID = mobListDict["s_id"] as? String  == nil ? "" :  mobListDict["s_id"] as! String
         self.brandID = mobListDict["brand_id"] as? String  == nil ? "" :  mobListDict["brand_id"] as! String
@@ -71,5 +75,6 @@ class MobileBrandTableViewCellModel {
         self.long = mobListDict["long"] as? String  == nil ? "" :  mobListDict["long"] as! String
         self.brand = mobListDict["brand"] as? String  == nil ? "" :  mobListDict["brand"] as! String
         self.stock = mobListDict["stock"] as? String  == nil ? "" :  mobListDict["stock"] as! String
+        self.shopname =  mobListDict["shopname"] as? String == nil ? "NA" :  mobListDict["shopname"] as! String
     }
 }
