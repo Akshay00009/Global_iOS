@@ -25,7 +25,7 @@
                                     <constraint firstAttribute="height" constant="40" id="ygF-d9-vtD"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="padding">
@@ -39,7 +39,7 @@
                                 <rect key="frame" x="30" y="334" width="260" height="40"/>
                                 <color key="tintColor" red="0.16470588235294117" green="0.59607843137254901" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="padding">
@@ -51,7 +51,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPd-6d-Yly">
                                 <rect key="frame" x="124" y="460" width="165" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Forgot password?">
                                     <color key="titleColor" red="0.32094711065292358" green="0.52996742725372314" blue="0.68052488565444946" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
