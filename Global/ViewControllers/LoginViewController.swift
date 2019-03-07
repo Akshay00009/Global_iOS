@@ -88,7 +88,7 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,NVActivity
         if valiadtion() {
             startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
             let url = "http://globemobility.in/admin/Mobile/checklogin"
-            let Parameter: [String : AnyObject] = ["username": usernameTextField.text! as AnyObject,"password": passwordTxtField.text! as AnyObject]
+            let Parameter: [String : AnyObject] = ["userid": usernameTextField.text! as AnyObject,"password": passwordTxtField.text! as AnyObject]
             NetworkHelper.shareWithPars(parameter: Parameter as NSDictionary,method: .post, url: url, completion: { (result) in
                 self.stopAnimating()
                 let response = result as NSDictionary
