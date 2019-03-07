@@ -11,7 +11,7 @@ import NVActivityIndicatorView
 import SwiftyJSON
 class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewable {
     
-
+    
     @IBOutlet weak var shopnm: UILabel!
     @IBOutlet weak var mobileListTableView: UITableView!
     var mobileBrandArray = [MobileBrandTableViewCellModel]()
@@ -24,55 +24,17 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
         mobileListTableView.delegate = self
         mobileListTableView.dataSource = self
         self.mobileListTableView.register(UINib(nibName: "MobileBrandTableViewCell", bundle: nil), forCellReuseIdentifier: "MobileBrandTableViewCell")
-
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         shopnm.text = shopName
         if mobileBrandArray.count != 0 {
-             mobileListTableView.isHidden = false
+            mobileListTableView.isHidden = false
         } else {
             mobileListTableView.isHidden = true
             self.showAlert(message: "There is no data records", Title: "Alert")
         }
-
-     //   mobileListTableView.isHidden = true
-//        getBranndListApi()
     }
-    
-//    func getBranndListApi() {
-//        startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
-//        let url = "http://globemobility.in/admin/Mobile/getBrandList"
-//        let Parameter: [String : AnyObject] = ["shopid": shopId as AnyObject,"latitude": lat as AnyObject,"longitude": long as AnyObject,]
-//        NetworkHelper.shareWithPars(parameter: Parameter as NSDictionary,method: .post, url: url, completion: { (result) in
-//            self.stopAnimating()
-//            let response = result as NSDictionary
-//            let resultValue = response["Result"] as! String
-//            if resultValue == "True" {
-//                self.mobileBrandArray.removeAll()
-//                let dataArray : NSArray = response["data"] as! NSArray
-//                for dict in dataArray {
-//                    self.mobileBrandArray.append(MobileBrandTableViewCellModel(mobListDict: dict as! NSDictionary))
-//                }
-//                self.mobileListTableView.isHidden = false
-//                self.mobileListTableView.reloadData()
-//            } else {
-//                self.mobileListTableView.isHidden = true
-//                self.showAlert(message: response["Message"] as! String, Title: "Alert")
-//            }
-//        }, completionError:  { (error) in
-//            self.stopAnimating()
-//            let errorResponse = error as NSDictionary
-//            if errorResponse.value(forKey: "errorType") as! NSNumber == 1 {
-//                self.present(AppUtility.showInternetErrorMessage(title: "", errorMessage: kNoInterNetMessage, completion: {
-//                }), animated: true, completion: nil)
-//            }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
-//                self.showAlert(message: kSomethingGetWrong, Title: "Alert")
-//            }
-//        })
-//    }
-
-    
     @IBAction func updateStockAction(_ sender: Any) {
         if mobileBrandArray.count != 0 {
             updateStock()
@@ -88,9 +50,7 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
         let reportListVc = self.storyboard?.instantiateViewController(withIdentifier: "ReportListViewController") as? ReportListViewController
         reportListVc?.shopid = shopId
         reportListVc!.shopName = shopName
-
         self.navigationController?.pushViewController(reportListVc!, animated: true)
-
     }
     func updateStock() {
         startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
@@ -102,13 +62,12 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
             brandArr.append(dic.brandID)
             stockQuant.append(dic.stockQuantity)
         }
-        print(brandArr)
         let Parameter : [String : AnyObject] = ["brandId" : brandArr as AnyObject ,"shortqua" : stockQuant as AnyObject ,
-                         "shopid": mobileBrandArray[0].sID as AnyObject,
-                         "lattude": mobileBrandArray[0].lat as AnyObject ,
-                         "longitude": mobileBrandArray[0].long as AnyObject,
-                         "username": UserDefaults.standard.value(forKey: kuserName) as AnyObject,
-                         "userid": UserDefaults.standard.value(forKey: kuserId) as AnyObject]
+                                                "shopid": mobileBrandArray[0].sID as AnyObject,
+                                                "lattude": mobileBrandArray[0].lat as AnyObject ,
+                                                "longitude": mobileBrandArray[0].long as AnyObject,
+                                                "username": UserDefaults.standard.value(forKey: kuserName) as AnyObject,
+                                                "userid": UserDefaults.standard.value(forKey: kuserId) as AnyObject]
         NetworkHelper.shareWithPars(parameter: Parameter ,method: .post, url: url, completion: { (result) in
             self.stopAnimating()
             let response = result as NSDictionary
@@ -130,7 +89,6 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
         })
     }
     
-    
     func  showAlert(message: String = "", Title: String = "") {
         let alertController = UIAlertController(title: Title, message: message, preferredStyle: UIAlertController.Style.alert)
         let retryAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {
@@ -140,7 +98,6 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
         alertController.addAction(retryAction)
         self.present(alertController, animated: true, completion: nil)
     }
-
 }
 extension MobileBrandListViewController : UITableViewDelegate,UITableViewDataSource,MobileBrandTableViewCellDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -170,18 +127,16 @@ extension MobileBrandListViewController : UITableViewDelegate,UITableViewDataSou
             } else {
                 mobileBrandArray[indexPath.row].stockQuantity = count
                 mobileBrandArray[indexPath.row].temp = count
-
             }
         } else {
             mobileBrandArray[indexPath.row].stockQuantity = "null"
             mobileBrandArray[indexPath.row].temp = ""
-
             mobileListTableView.reloadData()
             self.showAlert(message: "Please enter value below stock level", Title: "Alert")
         }
     }
-    func getPostString(params:[String:Any]) -> String
-    {
+    
+    func getPostString(params:[String:Any]) -> String {
         var data = [String]()
         for(key, value) in params
         {

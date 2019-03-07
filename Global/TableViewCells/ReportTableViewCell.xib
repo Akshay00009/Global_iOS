@@ -19,10 +19,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="547" height="112.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGI-Np-7zc">
-                        <rect key="frame" x="20" y="10" width="143" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGI-Np-7zc">
+                        <rect key="frame" x="20" y="10" width="143" height="20.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="143" id="XXK-wV-j2o"/>
+                            <constraint firstAttribute="width" constant="143" id="JIg-ev-bCL"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -35,7 +35,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stock Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JXq-iy-jwX">
-                        <rect key="frame" x="20" y="51" width="143" height="21"/>
+                        <rect key="frame" x="20" y="47" width="143" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -50,7 +50,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yXg-V6-upf">
-                        <rect key="frame" x="188" y="51" width="147" height="21"/>
+                        <rect key="frame" x="188" y="47" width="147" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="147" id="yBA-WM-XIx"/>
                         </constraints>
@@ -71,21 +71,21 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="yXg-V6-upf" firstAttribute="leading" secondItem="JXq-iy-jwX" secondAttribute="trailing" constant="25" id="44t-lD-bCK"/>
-                    <constraint firstItem="JXq-iy-jwX" firstAttribute="leading" secondItem="QGI-Np-7zc" secondAttribute="leading" id="4c9-TH-yT4"/>
                     <constraint firstItem="C9m-ZA-iZc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="6Yj-dP-ge1"/>
                     <constraint firstItem="Asb-T6-Ynv" firstAttribute="leading" secondItem="JXq-iy-jwX" secondAttribute="leading" id="7Ad-BB-r49"/>
-                    <constraint firstItem="QGI-Np-7zc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="CYE-Rf-g3Q"/>
-                    <constraint firstItem="JXq-iy-jwX" firstAttribute="top" secondItem="QGI-Np-7zc" secondAttribute="bottom" constant="20" id="KvK-IF-jcK"/>
+                    <constraint firstItem="QGI-Np-7zc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Wrq-VT-fmd"/>
                     <constraint firstAttribute="trailing" secondItem="C9m-ZA-iZc" secondAttribute="trailing" constant="10" id="XtD-Bh-dnj"/>
-                    <constraint firstItem="QGI-Np-7zc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Xua-1h-IKU"/>
+                    <constraint firstItem="JXq-iy-jwX" firstAttribute="leading" secondItem="QGI-Np-7zc" secondAttribute="leading" id="aTR-bN-hGX"/>
                     <constraint firstItem="Asb-T6-Ynv" firstAttribute="width" secondItem="JXq-iy-jwX" secondAttribute="width" id="d61-oP-PZm"/>
-                    <constraint firstItem="JXq-iy-jwX" firstAttribute="width" secondItem="QGI-Np-7zc" secondAttribute="width" id="lpa-Qy-99T"/>
+                    <constraint firstItem="QGI-Np-7zc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="dvl-XX-3iY"/>
+                    <constraint firstItem="JXq-iy-jwX" firstAttribute="trailing" secondItem="QGI-Np-7zc" secondAttribute="trailing" id="jgU-wL-WoD"/>
+                    <constraint firstItem="JXq-iy-jwX" firstAttribute="top" secondItem="QGI-Np-7zc" secondAttribute="bottom" constant="16.5" id="mce-KC-Gif"/>
                     <constraint firstItem="yUl-HP-fgn" firstAttribute="leading" secondItem="yXg-V6-upf" secondAttribute="leading" id="n2G-pL-ftZ"/>
                     <constraint firstItem="yUl-HP-fgn" firstAttribute="centerY" secondItem="Asb-T6-Ynv" secondAttribute="centerY" id="nNE-Au-8FD"/>
                     <constraint firstAttribute="bottom" secondItem="C9m-ZA-iZc" secondAttribute="bottom" constant="1" id="nqc-zB-YyN"/>
                     <constraint firstItem="C9m-ZA-iZc" firstAttribute="top" secondItem="Asb-T6-Ynv" secondAttribute="bottom" constant="9.5" id="vU5-5C-Y7s"/>
                     <constraint firstItem="yXg-V6-upf" firstAttribute="centerY" secondItem="JXq-iy-jwX" secondAttribute="centerY" id="xzR-hj-QlP"/>
-                    <constraint firstItem="Asb-T6-Ynv" firstAttribute="top" secondItem="JXq-iy-jwX" secondAttribute="bottom" constant="8" id="zfP-Uh-kFi"/>
+                    <constraint firstItem="Asb-T6-Ynv" firstAttribute="top" secondItem="JXq-iy-jwX" secondAttribute="bottom" constant="12" id="zfP-Uh-kFi"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
