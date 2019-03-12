@@ -30,9 +30,9 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>App Needs Location</string>
+	<string>Turn on location service to get Purchase Order(PO) details for selected shop.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>App Needs Location</string>
+	<string>Turn on location service to get Purchase Order(PO) details for selected shop.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

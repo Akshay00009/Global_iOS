@@ -25,7 +25,7 @@ class ReportListViewController: UIViewController,NVActivityIndicatorViewable,UIT
     }
     
     @IBAction func backBtnAction(_ sender: Any) {
-        self.navigationController?.popViewController(animated: false)
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

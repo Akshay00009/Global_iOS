@@ -25,7 +25,11 @@ class ForgetPasswordViewController: UIViewController,NVActivityIndicatorViewable
     }
     
     @IBAction func updateBtnAction(_ sender: Any) {
-        updateApiCall()
+        if emailTxtfield.text!.count != 0 {
+            updateApiCall()
+        } else {
+            self.showAlert(message: "Please enter your registered email address.", Title: "Alert")
+        }
     }
     
     func updateApiCall() {
@@ -66,7 +70,7 @@ class ForgetPasswordViewController: UIViewController,NVActivityIndicatorViewable
     }
  
     @IBAction func backBtnAvtion(_ sender: Any) {
-        self.navigationController?.popViewController(animated: false)
+        self.navigationController?.popViewController(animated: true)
     }
     /*
     // MARK: - Navigation

@@ -43,7 +43,7 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
         }
     }
     @IBAction func backBtnAction(_ sender: Any) {
-        self.navigationController?.popViewController(animated: false)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func chackOutBtnAction(_ sender: Any) {

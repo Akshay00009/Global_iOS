@@ -12,80 +12,74 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" restorationIdentifier="ReportTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReportTableViewCell" rowHeight="113" id="KGk-i7-Jjw" customClass="ReportTableViewCell" customModule="Global" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="547" height="113"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="ReportTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReportTableViewCell" rowHeight="107" id="KGk-i7-Jjw" customClass="ReportTableViewCell" customModule="Global" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="378" height="107"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="547" height="112.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="378" height="106.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGI-Np-7zc">
-                        <rect key="frame" x="10" y="10" width="143" height="20.5"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="143" id="JIg-ev-bCL"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <rect key="frame" x="10" y="10" width="358" height="20"/>
+                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purchase Order :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Asb-T6-Ynv">
-                        <rect key="frame" x="10" y="80" width="143" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="10" y="70.5" width="122" height="16.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="122" id="gwh-ME-wEF"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stock Level :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JXq-iy-jwX">
-                        <rect key="frame" x="10" y="47" width="143" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="10" y="44" width="122" height="16.5"/>
+                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yUl-HP-fgn">
-                        <rect key="frame" x="178" y="80" width="147" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="147" id="rP6-3X-Epu"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="146" y="70.5" width="222" height="16.5"/>
+                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yXg-V6-upf">
-                        <rect key="frame" x="178" y="47" width="147" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="147" id="yBA-WM-XIx"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="146" y="44" width="222" height="17"/>
+                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9m-ZA-iZc">
-                        <rect key="frame" x="10" y="110.5" width="527" height="1"/>
+                        <rect key="frame" x="10" y="100.5" width="358" height="1"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="1" id="GVh-5b-82w"/>
+                            <constraint firstAttribute="height" constant="1" id="62C-X9-bXE"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="yXg-V6-upf" firstAttribute="leading" secondItem="JXq-iy-jwX" secondAttribute="trailing" constant="25" id="44t-lD-bCK"/>
-                    <constraint firstItem="C9m-ZA-iZc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="6Yj-dP-ge1"/>
-                    <constraint firstItem="Asb-T6-Ynv" firstAttribute="leading" secondItem="JXq-iy-jwX" secondAttribute="leading" id="7Ad-BB-r49"/>
-                    <constraint firstItem="QGI-Np-7zc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Wrq-VT-fmd"/>
-                    <constraint firstAttribute="trailing" secondItem="C9m-ZA-iZc" secondAttribute="trailing" constant="10" id="XtD-Bh-dnj"/>
-                    <constraint firstItem="JXq-iy-jwX" firstAttribute="leading" secondItem="QGI-Np-7zc" secondAttribute="leading" id="aTR-bN-hGX"/>
-                    <constraint firstItem="Asb-T6-Ynv" firstAttribute="width" secondItem="JXq-iy-jwX" secondAttribute="width" id="d61-oP-PZm"/>
-                    <constraint firstItem="QGI-Np-7zc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="dvl-XX-3iY"/>
-                    <constraint firstItem="JXq-iy-jwX" firstAttribute="trailing" secondItem="QGI-Np-7zc" secondAttribute="trailing" id="jgU-wL-WoD"/>
-                    <constraint firstItem="JXq-iy-jwX" firstAttribute="top" secondItem="QGI-Np-7zc" secondAttribute="bottom" constant="16.5" id="mce-KC-Gif"/>
-                    <constraint firstItem="yUl-HP-fgn" firstAttribute="leading" secondItem="yXg-V6-upf" secondAttribute="leading" id="n2G-pL-ftZ"/>
-                    <constraint firstItem="yUl-HP-fgn" firstAttribute="centerY" secondItem="Asb-T6-Ynv" secondAttribute="centerY" id="nNE-Au-8FD"/>
-                    <constraint firstAttribute="bottom" secondItem="C9m-ZA-iZc" secondAttribute="bottom" constant="1" id="nqc-zB-YyN"/>
-                    <constraint firstItem="C9m-ZA-iZc" firstAttribute="top" secondItem="Asb-T6-Ynv" secondAttribute="bottom" constant="9.5" id="vU5-5C-Y7s"/>
-                    <constraint firstItem="yXg-V6-upf" firstAttribute="centerY" secondItem="JXq-iy-jwX" secondAttribute="centerY" id="xzR-hj-QlP"/>
-                    <constraint firstItem="Asb-T6-Ynv" firstAttribute="top" secondItem="JXq-iy-jwX" secondAttribute="bottom" constant="12" id="zfP-Uh-kFi"/>
+                    <constraint firstItem="JXq-iy-jwX" firstAttribute="centerY" secondItem="yXg-V6-upf" secondAttribute="centerY" id="00r-Ga-9a1"/>
+                    <constraint firstItem="Asb-T6-Ynv" firstAttribute="leading" secondItem="JXq-iy-jwX" secondAttribute="leading" id="21C-TZ-LPW"/>
+                    <constraint firstItem="yUl-HP-fgn" firstAttribute="leading" secondItem="yXg-V6-upf" secondAttribute="leading" id="2h2-Pd-R3U"/>
+                    <constraint firstItem="QGI-Np-7zc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="3aG-Wj-VjY"/>
+                    <constraint firstItem="JXq-iy-jwX" firstAttribute="leading" secondItem="QGI-Np-7zc" secondAttribute="leading" id="3rW-eW-Fwa"/>
+                    <constraint firstItem="JXq-iy-jwX" firstAttribute="top" secondItem="QGI-Np-7zc" secondAttribute="bottom" constant="14" id="3yH-gb-1CK"/>
+                    <constraint firstItem="Asb-T6-Ynv" firstAttribute="top" secondItem="JXq-iy-jwX" secondAttribute="bottom" constant="10" id="GYR-h6-VBV"/>
+                    <constraint firstAttribute="trailing" secondItem="yXg-V6-upf" secondAttribute="trailing" constant="10" id="V1f-mW-v3E"/>
+                    <constraint firstItem="yXg-V6-upf" firstAttribute="leading" secondItem="JXq-iy-jwX" secondAttribute="trailing" constant="14" id="fdk-Kr-zcs"/>
+                    <constraint firstAttribute="trailing" secondItem="C9m-ZA-iZc" secondAttribute="trailing" constant="10" id="feu-uV-lON"/>
+                    <constraint firstAttribute="bottom" secondItem="C9m-ZA-iZc" secondAttribute="bottom" constant="5" id="ks5-Oo-B84"/>
+                    <constraint firstItem="Asb-T6-Ynv" firstAttribute="centerY" secondItem="yUl-HP-fgn" secondAttribute="centerY" id="oH8-iY-Q6q"/>
+                    <constraint firstAttribute="trailing" secondItem="QGI-Np-7zc" secondAttribute="trailing" constant="10" id="ofe-td-wgo"/>
+                    <constraint firstItem="QGI-Np-7zc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="sS3-f6-ior"/>
+                    <constraint firstItem="C9m-ZA-iZc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="spQ-gR-Q9I"/>
+                    <constraint firstItem="yUl-HP-fgn" firstAttribute="width" secondItem="yXg-V6-upf" secondAttribute="width" id="vES-U0-AsS"/>
+                    <constraint firstItem="Asb-T6-Ynv" firstAttribute="width" secondItem="JXq-iy-jwX" secondAttribute="width" id="xhT-DU-6EY"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -94,7 +88,7 @@
                 <outlet property="purchaseOrder" destination="yUl-HP-fgn" id="pdp-1g-fJL"/>
                 <outlet property="stockLevel" destination="yXg-V6-upf" id="pK3-9j-Nh3"/>
             </connections>
-            <point key="canvasLocation" x="52" y="96.7016491754123"/>
+            <point key="canvasLocation" x="-83.200000000000003" y="94.002998500749626"/>
         </tableViewCell>
     </objects>
 </document>

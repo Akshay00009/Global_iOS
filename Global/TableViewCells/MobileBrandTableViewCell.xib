@@ -12,30 +12,53 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MobileBrandTableViewCell" rowHeight="134" id="KGk-i7-Jjw" customClass="MobileBrandTableViewCell" customModule="Global" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="482" height="134"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MobileBrandTableViewCell" rowHeight="125" id="KGk-i7-Jjw" customClass="MobileBrandTableViewCell" customModule="Global" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="482" height="125"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="482" height="133.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="482" height="124.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0y-40-Oah">
-                        <rect key="frame" x="10" y="10" width="210" height="20.5"/>
+                        <rect key="frame" x="10" y="10" width="462" height="21"/>
+                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="18"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Available Stock :" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKI-dn-t9Y">
+                        <rect key="frame" x="10" y="82" width="123" height="16.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="210" id="EHh-j0-VoC"/>
+                            <constraint firstAttribute="width" constant="123" id="s69-HB-840"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Available Stock" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qvH-cv-Oiq">
-                        <rect key="frame" x="281" y="82.5" width="191" height="35"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cp2-nR-tlM">
+                        <rect key="frame" x="141" y="45.5" width="40.5" height="17.5"/>
+                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stock Level :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qj0-IR-vdq">
+                        <rect key="frame" x="10" y="46" width="86" height="16.5"/>
+                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHN-cj-jdW">
+                        <rect key="frame" x="10" y="119" width="462" height="0.5"/>
+                        <color key="backgroundColor" red="0.76944356479999998" green="0.76944356479999998" blue="0.76944356479999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="191" id="I2Z-fb-UcM"/>
-                            <constraint firstAttribute="height" constant="35" id="YGQ-rJ-ynC"/>
+                            <constraint firstAttribute="height" constant="0.69999999999999996" id="CQe-M3-fZZ"/>
                         </constraints>
+                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Available Stock" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qvH-cv-Oiq">
+                        <rect key="frame" x="141" y="75.5" width="176" height="30"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -46,55 +69,23 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </textField>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Available Stock :" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKI-dn-t9Y">
-                        <rect key="frame" x="10" y="81.5" width="150" height="37"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="150" id="t5T-in-8Cd"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cp2-nR-tlM">
-                        <rect key="frame" x="281" y="46" width="191" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stock Level :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qj0-IR-vdq">
-                        <rect key="frame" x="10" y="45.5" width="181" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHN-cj-jdW">
-                        <rect key="frame" x="10" y="132.5" width="462" height="1"/>
-                        <color key="backgroundColor" red="0.76944356479999998" green="0.76944356479999998" blue="0.76944356479999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="352-qx-pu1"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Qj0-IR-vdq" firstAttribute="width" secondItem="k0y-40-Oah" secondAttribute="width" constant="-29" id="0BH-ge-BaM"/>
-                    <constraint firstAttribute="bottom" secondItem="NHN-cj-jdW" secondAttribute="bottom" id="35h-q8-8ro"/>
-                    <constraint firstItem="UKI-dn-t9Y" firstAttribute="top" secondItem="Qj0-IR-vdq" secondAttribute="bottom" constant="15" id="6yE-QN-0B2"/>
-                    <constraint firstItem="qvH-cv-Oiq" firstAttribute="centerY" secondItem="UKI-dn-t9Y" secondAttribute="centerY" id="8RS-wU-bix"/>
-                    <constraint firstItem="k0y-40-Oah" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="AmQ-gP-hPM"/>
-                    <constraint firstItem="Cp2-nR-tlM" firstAttribute="centerY" secondItem="Qj0-IR-vdq" secondAttribute="centerY" id="LJK-b6-sO2"/>
-                    <constraint firstItem="NHN-cj-jdW" firstAttribute="top" secondItem="UKI-dn-t9Y" secondAttribute="bottom" constant="14" id="La9-SD-LjC"/>
-                    <constraint firstAttribute="trailing" secondItem="Cp2-nR-tlM" secondAttribute="trailing" constant="10" id="Mhz-8Z-I6X"/>
-                    <constraint firstAttribute="trailing" secondItem="NHN-cj-jdW" secondAttribute="trailing" constant="10" id="Nqw-Ko-UW5"/>
-                    <constraint firstAttribute="trailing" secondItem="qvH-cv-Oiq" secondAttribute="trailing" constant="10" id="P9c-DE-pZd"/>
-                    <constraint firstItem="NHN-cj-jdW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="QoE-gE-KjW"/>
-                    <constraint firstItem="UKI-dn-t9Y" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Qyp-Yu-sy8"/>
-                    <constraint firstItem="k0y-40-Oah" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="aS0-l5-FwZ"/>
-                    <constraint firstItem="Qj0-IR-vdq" firstAttribute="top" secondItem="k0y-40-Oah" secondAttribute="bottom" constant="15" id="bBt-n6-0oK"/>
-                    <constraint firstItem="Cp2-nR-tlM" firstAttribute="width" secondItem="qvH-cv-Oiq" secondAttribute="width" id="tkq-do-j8r"/>
-                    <constraint firstItem="Qj0-IR-vdq" firstAttribute="leading" secondItem="k0y-40-Oah" secondAttribute="leading" id="ylI-8f-fPB"/>
+                    <constraint firstAttribute="trailing" secondItem="k0y-40-Oah" secondAttribute="trailing" constant="10" id="4Nb-ej-do9"/>
+                    <constraint firstItem="Cp2-nR-tlM" firstAttribute="leading" secondItem="qvH-cv-Oiq" secondAttribute="leading" id="5kL-sM-p58"/>
+                    <constraint firstItem="UKI-dn-t9Y" firstAttribute="top" secondItem="Qj0-IR-vdq" secondAttribute="bottom" constant="19.5" id="7GN-v0-fjd"/>
+                    <constraint firstAttribute="trailing" secondItem="NHN-cj-jdW" secondAttribute="trailing" constant="10" id="G9W-o0-M4A"/>
+                    <constraint firstItem="Qj0-IR-vdq" firstAttribute="centerY" secondItem="Cp2-nR-tlM" secondAttribute="centerY" id="Jwc-U9-hu6"/>
+                    <constraint firstItem="UKI-dn-t9Y" firstAttribute="centerY" secondItem="qvH-cv-Oiq" secondAttribute="centerY" id="SeQ-gC-F51"/>
+                    <constraint firstItem="qvH-cv-Oiq" firstAttribute="leading" secondItem="UKI-dn-t9Y" secondAttribute="trailing" constant="8" id="Yst-xy-WXn"/>
+                    <constraint firstItem="NHN-cj-jdW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="i7j-Ff-GwU"/>
+                    <constraint firstItem="k0y-40-Oah" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="iox-yf-0K4"/>
+                    <constraint firstAttribute="bottom" secondItem="NHN-cj-jdW" secondAttribute="bottom" constant="5" id="nFd-Vr-xo6"/>
+                    <constraint firstItem="Qj0-IR-vdq" firstAttribute="top" secondItem="k0y-40-Oah" secondAttribute="bottom" constant="15" id="p9H-Ae-rvY"/>
+                    <constraint firstItem="UKI-dn-t9Y" firstAttribute="leading" secondItem="Qj0-IR-vdq" secondAttribute="leading" id="sBl-m5-KuX"/>
+                    <constraint firstItem="NHN-cj-jdW" firstAttribute="top" secondItem="qvH-cv-Oiq" secondAttribute="bottom" constant="13.5" id="vN1-ht-Dxc"/>
+                    <constraint firstItem="Qj0-IR-vdq" firstAttribute="leading" secondItem="k0y-40-Oah" secondAttribute="leading" id="vdy-GV-78w"/>
+                    <constraint firstItem="k0y-40-Oah" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="wE8-1V-JwG"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -103,7 +94,7 @@
                 <outlet property="countTxtField" destination="qvH-cv-Oiq" id="YWa-eg-cQ2"/>
                 <outlet property="stockLevel" destination="Cp2-nR-tlM" id="DKs-Rm-K6x"/>
             </connections>
-            <point key="canvasLocation" x="-33.600000000000001" y="113.3433283358321"/>
+            <point key="canvasLocation" x="-33.600000000000001" y="109.29535232383809"/>
         </tableViewCell>
     </objects>
 </document>

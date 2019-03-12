@@ -223,7 +223,7 @@ extension ShopListViewController : UITableViewDataSource,UITableViewDelegate,sho
     func getBranndListApi(indexpath : IndexPath) {
         startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
         let url = "http://globemobility.in/admin/Mobile/getBrandList"
-        let Parameter: [String : AnyObject] = ["shopid": shopListArray[indexpath.row].shopID as AnyObject,"latitude": latitudeValue as AnyObject,"longitude": longitudeValue as AnyObject,]
+        let Parameter: [String : AnyObject] = ["shopid": shopListArray[indexpath.row].shopID as AnyObject,"latitude":/*"18.5199428"*/latitudeValue as AnyObject,"longitude":/*"73.8420459"*/longitudeValue as AnyObject,]
         NetworkHelper.shareWithPars(parameter: Parameter as NSDictionary,method: .post, url: url, completion: { (result) in
             self.stopAnimating()
             let response = result as NSDictionary
