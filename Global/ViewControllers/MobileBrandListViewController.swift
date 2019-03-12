@@ -9,7 +9,8 @@
 import UIKit
 import NVActivityIndicatorView
 import SwiftyJSON
-class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewable {
+import CoreLocation
+class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewable,CLLocationManagerDelegate {
     
     
     @IBOutlet weak var shopnm: UILabel!
@@ -19,13 +20,46 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
     var shopName = ""
     var updateArray = [[String:String]]()
     var data = ""
+    var longitudeValue = ""
+    var latitudeValue = ""
+    var currentLocation: CLLocation! = nil
+    let locationManager = CLLocationManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         mobileListTableView.delegate = self
         mobileListTableView.dataSource = self
         self.mobileListTableView.register(UINib(nibName: "MobileBrandTableViewCell", bundle: nil), forCellReuseIdentifier: "MobileBrandTableViewCell")
+        
+        locationManager.requestAlwaysAuthorization()
+        // For use when the app is open
+        //locationManager.requestWhenInUseAuthorization()
+        // If location services is enabled get the users location
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest // You can change the locaiton accuary here.
+            locationManager.startUpdatingLocation()
+            currentLocation = locationManager.location
+        }
         // Do any additional setup after loading the view.
     }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            let long = location.coordinate.longitude
+            let lat = location.coordinate.latitude
+            latitudeValue  = (String(format: "%.8f", lat))
+            longitudeValue = (String(format: "%.8f", long))
+        }
+    }
+    
+    // If we have been deined access give the user the option to change it
+    @available(iOS 4.2, *)
+    public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
+    {
+        locationManager.startUpdatingLocation()
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         shopnm.text = shopName
         if mobileBrandArray.count != 0 {
@@ -47,11 +81,36 @@ class MobileBrandListViewController: UIViewController,NVActivityIndicatorViewabl
     }
     
     @IBAction func chackOutBtnAction(_ sender: Any) {
-        let reportListVc = self.storyboard?.instantiateViewController(withIdentifier: "ReportListViewController") as? ReportListViewController
-        reportListVc?.shopid = shopId
-        reportListVc!.shopName = shopName
-        self.navigationController?.pushViewController(reportListVc!, animated: true)
-    }
+//        let reportListVc = self.storyboard?.instantiateViewController(withIdentifier: "ReportListViewController") as? ReportListViewController
+//        reportListVc?.shopid = shopId
+//        reportListVc!.shopName = shopName
+//        self.navigationController?.pushViewController(reportListVc!, animated: true)
+            startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
+            let url = "http://globemobility.in/admin/Mobile/OUT_from_shop"
+            let Parameter: [String : String] = ["shopid": shopId,"latitude":latitudeValue,"longitude":longitudeValue]
+            NetworkHelper.shareWithPars(parameter: Parameter ,method: .post, url: url, completion: { (result) in
+                self.stopAnimating()
+                let response = result as NSDictionary
+                let resultValue = response["Result"] as! String
+                if resultValue == "True" {
+                    let loginVc = self.storyboard?.instantiateViewController(withIdentifier: "ShopListViewController") as? ShopListViewController
+                    self.navigationController?.pushViewController(loginVc!, animated: true)
+                    
+                } else {
+                    self.showAlert(message: response["Message"] as! String, Title: "Alert")
+                }
+            }, completionError:  { (error) in
+                self.stopAnimating()
+                let errorResponse = error as NSDictionary
+                if errorResponse.value(forKey: "errorType") as! NSNumber == 1 {
+                    self.present(AppUtility.showInternetErrorMessage(title: "", errorMessage: kNoInterNetMessage, completion: {
+                    }), animated: true, completion: nil)
+                }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
+                    self.showAlert(message: kSomethingGetWrong, Title: "Alert")
+                }
+            })
+        }
+    
     func updateStock() {
         startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
         let url = "http://globemobility.in/admin/Mobile/updateStock"

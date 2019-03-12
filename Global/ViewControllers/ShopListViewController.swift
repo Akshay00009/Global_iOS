@@ -161,30 +161,17 @@ class ShopListViewController: UIViewController,BCDropDownButtonDelegate,NVActivi
     }
     
     @IBAction func logOutBtnAction(_ sender: Any) {
-        startAnimating(kActivityIndicatorSize, message: kLoadingMessageForHud, type: NVActivityIndicatorType(rawValue: kActivityIndicatorNumber)! )
-        let url = "http://globemobility.in/admin/Mobile/OUT_from_shop"
-        let Parameter: [String : String] = ["shopid": UserDefaults.standard.value(forKey: kShopId) as! String,"latitude":latitudeValue,"longitude":longitudeValue]
-        NetworkHelper.shareWithPars(parameter: Parameter ,method: .post, url: url, completion: { (result) in
-            self.stopAnimating()
-            let response = result as NSDictionary
-            let resultValue = response["Result"] as! String
-            if resultValue == "True" {
-                let loginVc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
-                self.navigationController?.pushViewController(loginVc!, animated: true)
-                
-            } else {
-                self.showAlert(message: response["Message"] as! String, Title: "Alert")
-            }
-        }, completionError:  { (error) in
-            self.stopAnimating()
-            let errorResponse = error as NSDictionary
-            if errorResponse.value(forKey: "errorType") as! NSNumber == 1 {
-                self.present(AppUtility.showInternetErrorMessage(title: "", errorMessage: kNoInterNetMessage, completion: {
-                }), animated: true, completion: nil)
-            }  else if errorResponse.value(forKey: "errorType") as! NSNumber == 2 || errorResponse.value(forKey: "errorType") as! NSNumber == 3 {
-                self.showAlert(message: kSomethingGetWrong, Title: "Alert")
-            }
+        let alertController = UIAlertController(title: "", message: "message", preferredStyle: UIAlertController.Style.alert)
+        let retryAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {
+            alert -> Void in
+            let repListVc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
+            self.navigationController?.pushViewController(repListVc!, animated: true)
         })
+        let cancel = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil)
+        alertController.addAction(retryAction)
+        alertController.addAction(cancel)
+        self.present(alertController, animated: true, completion: nil)
+
     }
 }
 extension ShopListViewController : UITableViewDataSource,UITableViewDelegate,shopInBtnTableViewCellDelegate {
